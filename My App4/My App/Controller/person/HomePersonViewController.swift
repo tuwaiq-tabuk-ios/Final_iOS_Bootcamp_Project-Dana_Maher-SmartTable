@@ -13,18 +13,22 @@ class HomePersonViewController :UIViewController {
   @IBOutlet weak var listsTableView: UITableView!
   
   
-  var listArray = ["The Two",
-                   "Lobani",
-                   "Out Side",
-                   "Banan Louge"
-  ]
+  var listArray: Spots!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    listArray = Spots()
     listsTableView.dataSource = self
     listsTableView.delegate = self
     
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    listArray.loadData {
+      self.listsTableView.reloadData()
+    }
   }
   
 }
@@ -34,13 +38,13 @@ extension HomePersonViewController: UITableViewDataSource, UITableViewDelegate {
   
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return listArray.count
+    return listArray.spotArray.count
   }
   
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ListOfResturantt", for: indexPath) as! RestaurantTableViewCell
-    cell.nameLable?.text = listArray[indexPath.row]
+    cell.nameLable?.text = listArray.spotArray[indexPath.row].name
     return cell
   }
   

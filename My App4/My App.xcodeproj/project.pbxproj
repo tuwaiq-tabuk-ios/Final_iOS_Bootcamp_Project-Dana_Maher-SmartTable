@@ -26,6 +26,9 @@
 		D0C1B02B27785F32002E3E0A /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1B02A27785F32002E3E0A /* Spot.swift */; };
 		D0C1B02E277886E4002E3E0A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1B02D277886E4002E3E0A /* UIViewController.swift */; };
 		D0C1B032277895F2002E3E0A /* BusinessOflistRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1B031277895F2002E3E0A /* BusinessOflistRestaurantTableViewCell.swift */; };
+		D0C9625C2779DBF60018405C /* Spots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9625B2779DBF60018405C /* Spots.swift */; };
+		D0C9625E2779E7AD0018405C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9625D2779E7AD0018405C /* UIView.swift */; };
+		D0C96260277A4E560018405C /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9625F277A4E560018405C /* APIKeys.swift */; };
 		D0E59F042761EE6500EB3D2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E59F032761EE6500EB3D2A /* AppDelegate.swift */; };
 		D0E59F062761EE6500EB3D2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E59F052761EE6500EB3D2A /* SceneDelegate.swift */; };
 		D0E59F082761EE6500EB3D2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E59F072761EE6500EB3D2A /* ViewController.swift */; };
@@ -56,6 +59,9 @@
 		D0C1B02A27785F32002E3E0A /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		D0C1B02D277886E4002E3E0A /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		D0C1B031277895F2002E3E0A /* BusinessOflistRestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessOflistRestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		D0C9625B2779DBF60018405C /* Spots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spots.swift; sourceTree = "<group>"; };
+		D0C9625D2779E7AD0018405C /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		D0C9625F277A4E560018405C /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		D0E59F002761EE6500EB3D2A /* My App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0E59F032761EE6500EB3D2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0E59F052761EE6500EB3D2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 				D0B99D2C276F18C500526887 /* PersonModel.swift */,
 				D01C85692771C83600480679 /* Post.swift */,
 				D0C1B02A27785F32002E3E0A /* Spot.swift */,
+				D0C9625B2779DBF60018405C /* Spots.swift */,
+				D0C9625F277A4E560018405C /* APIKeys.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				D0C1B02D277886E4002E3E0A /* UIViewController.swift */,
+				D0C9625D2779E7AD0018405C /* UIView.swift */,
 			);
 			path = Ext;
 			sourceTree = "<group>";
@@ -344,8 +353,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D08EAD56276762AC00902D71 /* HomePersonViewController.swift in Sources */,
+				D0C9625C2779DBF60018405C /* Spots.swift in Sources */,
+				D0C9625E2779E7AD0018405C /* UIView.swift in Sources */,
 				D0E59F082761EE6500EB3D2A /* ViewController.swift in Sources */,
 				D0E59F042761EE6500EB3D2A /* AppDelegate.swift in Sources */,
+				D0C96260277A4E560018405C /* APIKeys.swift in Sources */,
 				D0C1B02E277886E4002E3E0A /* UIViewController.swift in Sources */,
 				D08EAD522767604F00902D71 /* Utilities.swift in Sources */,
 				D01C856A2771C83600480679 /* Post.swift in Sources */,
