@@ -195,9 +195,14 @@ extension DetailsViewController: CLLocationManagerDelegate {
       } else {
         print("😡 ERROR: retrieving placemark.")
       }
+        if self.spot.name == "" && self.spot.address == "" {
+          self.spot.name = name
+          self.spot.address = address
+          self.spot.coordinate = currentLocation.coordinate
+        }
         
-      self.mapView.userLocation.title = locationName
-      self.spot.name = locationName
+        self.mapView.userLocation.title = name
+        self.mapView.userLocation.subtitle = address.replacingOccurrences(of: "\n", with: ", ")
       self.updateUserInterface()
     }
   }
