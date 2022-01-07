@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>825193271891-cuk5ingm6g2i7vivu9usorv2ijqsjug4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.825193271891-cuk5ingm6g2i7vivu9usorv2ijqsjug4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA31oI8i1FbhNDMD08685Yqy5HrZRB2BMI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>825193271891</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.danah.SmartTable-</string>
+	<key>PROJECT_ID</key>
+	<string>smarttable-6eed6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>smarttable-6eed6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:825193271891:ios:a468764eabfaa947eb6ca6</string>
+</dict>
+</plist>

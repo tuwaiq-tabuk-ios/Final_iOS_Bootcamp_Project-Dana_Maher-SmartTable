@@ -268,11 +268,11 @@
             <objects>
                 <viewController id="JO7-sP-HnU" customClass="DetailsViewController" customModule="My_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZLR-eQ-Fsg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NhJ-Tg-aSB">
-                                <rect key="frame" x="0.0" y="88" width="414" height="385"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Restaurant Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u4F-B7-laf">
                                         <rect key="frame" x="8" y="8" width="398" height="33"/>
@@ -403,7 +403,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addressTextField" destination="TV4-6s-9Oo" id="biE-bM-hqk"/>
                         <outlet property="nameTextField" destination="u4F-B7-laf" id="7L0-xV-9QQ"/>
@@ -806,7 +805,7 @@
                     <navigationItem key="navigationItem" id="znx-U6-im2">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Fic-bi-pTo">
                             <connections>
-                                <segue destination="JO7-sP-HnU" kind="show" id="kHm-j2-4SV"/>
+                                <segue destination="JO7-sP-HnU" kind="presentation" modalPresentationStyle="formSheet" id="kHm-j2-4SV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1017,7 +1016,6 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Ntq-OW-SvP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xMN-Qi-7Db">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
