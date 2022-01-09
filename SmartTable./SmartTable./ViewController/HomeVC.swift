@@ -16,12 +16,12 @@ class HomeVC: UIViewController {
     private let db = Firestore.firestore()
   
   
-  //@IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var tableView: UITableView!
   
     private let searchBar = UISearchController()
     private var restaurants : [Restaurent]              = []
     private var filteredResults: [Restaurent]           = []
-  private let tableView                               = UITableView(frame: .zero, style: .insetGrouped)
+//  private let tableView                               = UITableView(frame: .zero, style: .insetGrouped)
     //private var imagesArr                               = [UIImage]()
     private let storage                                 = Storage.storage()
     
@@ -68,28 +68,28 @@ class HomeVC: UIViewController {
 //    }
     
     func uiSettengs(){
-        tableView.backgroundColor = .stBackground
-        tableView.translatesAutoresizingMaskIntoConstraints                     = false
+//        tableView.backgroundColor = .stBackground
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(RestCell.self, forCellReuseIdentifier: RestCell.id)
-        tableView.rowHeight                                                     = UITableView.automaticDimension
-        tableView.estimatedRowHeight                                            = 400
-        tableView.delegate                                                      = self
-        tableView.dataSource                                                    = self
-        view.addSubview(tableView)
+//        tableView.rowHeight                                                     = UITableView.automaticDimension
+//        tableView.estimatedRowHeight                                            = 400
+        tableView.delegate = self
+        tableView.dataSource = self
+//        view.addSubview(tableView)
         
        
         searchBar.loadViewIfNeeded()
-        searchBar.searchResultsUpdater                                          = self
-        searchBar.obscuresBackgroundDuringPresentation                          = false
-        searchBar.searchBar.returnKeyType                                       = .done
+        searchBar.searchResultsUpdater = self
+        searchBar.obscuresBackgroundDuringPresentation = false
+        searchBar.searchBar.returnKeyType = .done
         searchBar.searchBar.sizeToFit()
         searchBar.searchBar.placeholder = "Search for a restaurent"
-        searchBar.hidesNavigationBarDuringPresentation                          = false
-        definesPresentationContext                                              = true
+        searchBar.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
         
-        navigationItem.searchController                                         = searchBar
-        navigationItem.hidesSearchBarWhenScrolling                              = true
-        searchBar.searchBar.delegate                                            = self
+        navigationItem.searchController = searchBar
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchBar.searchBar.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -118,6 +118,7 @@ class HomeVC: UIViewController {
             }
     }
     
+  
     private func readImageFromFirestore(with url: String, completion: @escaping (UIImage) -> ()){
         
         

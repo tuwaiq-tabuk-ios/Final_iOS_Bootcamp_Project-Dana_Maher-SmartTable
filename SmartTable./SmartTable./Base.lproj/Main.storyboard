@@ -427,22 +427,46 @@
         <!--Home-->
         <scene sceneID="Lg5-67-osx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P3M-jF-uBw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="HomeVC" id="DER-xR-pxa" customClass="HomeVC" customModule="SmartTable_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zye-VY-XgA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IbP-BM-Sze">
+                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="196" id="4HW-Kp-jth">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="196"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4HW-Kp-jth" id="Rf5-n9-afU">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="196"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.935546875" green="0.37784526940000002" blue="0.49529170160000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="GFD-wX-Wsv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GFD-wX-Wsv" firstAttribute="trailing" secondItem="IbP-BM-Sze" secondAttribute="trailing" id="2Wh-dp-mMu"/>
+                            <constraint firstItem="GFD-wX-Wsv" firstAttribute="bottom" secondItem="IbP-BM-Sze" secondAttribute="bottom" id="AGR-ly-1Ee"/>
+                            <constraint firstItem="IbP-BM-Sze" firstAttribute="leading" secondItem="GFD-wX-Wsv" secondAttribute="leading" id="WIH-0Y-NTj"/>
+                            <constraint firstItem="IbP-BM-Sze" firstAttribute="top" secondItem="GFD-wX-Wsv" secondAttribute="top" id="d8o-3l-cNq"/>
+                        </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="yxR-Z5-BCG"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Home" id="Ahi-Kc-gWF">
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="Kgj-49-PMd"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="IbP-BM-Sze" id="x4V-gs-e36"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P3M-jF-uBw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7442.0289855072469" y="779.46428571428567"/>
         </scene>
@@ -467,10 +491,10 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Rb8-3x-3Td">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YRc-gD-kAm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zV7-fP-Z8u" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5Y7-dW-aLG">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -478,23 +502,9 @@
                         <segue destination="suK-NO-ROc" kind="relationship" relationship="viewControllers" id="5be-6r-2NQ"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YRc-gD-kAm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5484" y="779"/>
-        </scene>
-        <!--HomeVC-->
-        <scene sceneID="X9j-pi-7W6">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9dR-hu-tGr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="qTN-Gv-c5P" customClass="HomeVC" customModule="SmartTable_" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HRu-4e-ef8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Dwd-3b-r6X"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="5999" y="72"/>
         </scene>
         <!--Item-->
         <scene sceneID="47F-ii-v2P">
