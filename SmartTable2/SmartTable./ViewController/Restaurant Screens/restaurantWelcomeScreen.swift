@@ -27,21 +27,20 @@ class restaurantWelcomeScreen: UIViewController {
 //    }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
       self.dismissKeyboard()
       overrideUserInterfaceStyle = .light
-          navigationItem.setHidesBackButton(true, animated: true)
-        
-        
+//          navigationItem.setHidesBackButton(true, animated: true)
+      navigationItem.backButtonTitle = "Back"
+      
     }
     
+  
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if isUserSignedIn() {
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true,
+                         completion: nil)
         }
-       
     }
     
 

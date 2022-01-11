@@ -24,56 +24,94 @@ class LoginRestVC: UIViewController {
         super.viewDidLoad()
       self.dismissKeyboard()
       overrideUserInterfaceStyle = .light
-          navigationItem.setHidesBackButton(true, animated: true)
-        
-
+//          navigationItem.setHidesBackButton(true, animated: true)
+      navigationItem.backButtonTitle = "Back"
     }
+  
+  
   @IBAction func Login(_ sender: UIButton) {
     loginUserTapped()
   }
   
+  
     @objc private func loginUserTapped() {
-        guard let email = emailTF.text else {return}
-        guard let password = passwordTF.text else {return}
+        guard let email = emailTF.text else {
+          return
+          
+        }
+        guard let password = passwordTF.text else {
+          return
+          
+        }
+      
         print("clicked")
         if !email.isEmpty && !password.isEmpty {
-            loginUsing(email: email, password: password)
-        }else{
-            let alert = UIAlertController(title: "Oops!", message: "please make sure email and password are not empty.", preferredStyle: .alert)
+            loginUsing(email: email,
+                       password: password)
+        } else {
+            let alert = UIAlertController(title: "Oops!",
+                                          message: "please make sure email and password are not empty.",
+                                          preferredStyle: .alert)
 
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: .cancel,
+                                          handler: nil))
 
-            present(alert, animated: true)
+            present(alert,
+                    animated: true)
         }
     }
 
-    private func loginUsing(email: String, password: String) {
+  
+    private func loginUsing(email: String,
+                            password: String) {
         print("clicked")
-        Auth.auth().signIn(withEmail: email, password: password) { results, error in
+        Auth.auth().signIn(withEmail: email,
+                           password: password) { results, error in
 
             if let error = error as NSError? {
                 switch AuthErrorCode(rawValue: error.code) {
                 case .wrongPassword:
 
-                    let alert = UIAlertController(title: "Oops!", message: "you entered a wrong password", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-
+                    let alert = UIAlertController(title: "Oops!",
+                                                  message: "you entered a wrong password",
+                                                  preferredStyle: .alert)
+                  
+                    alert.addAction(UIAlertAction(title: "OK",
+                                                  style: .cancel,
+                                                  handler: nil))
+                  
+                    self.present(alert,
+                                 animated: true)
                 case .invalidEmail:
 
-                    let alert = UIAlertController(title: "Oops!", message: "are sure you typed the email correctly?", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-
+                    let alert = UIAlertController(title: "Oops!",
+                                                  message: "are sure you typed the email correctly?",
+                                                  preferredStyle: .alert)
+                  
+                    alert.addAction(UIAlertAction(title: "OK",
+                                                  style: .cancel,
+                                                  handler: nil))
+                  
+                    self.present(alert,
+                                 animated: true)
                 default:
 
-                    let alert = UIAlertController(title: "Oops!", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
+                    let alert = UIAlertController(title: "Oops!",
+                                                  message: "\(error.localizedDescription)",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK",
+                                                  style: .cancel,
+                                                  handler: nil))
+                  
+                    self.present(alert,
+                                 animated: true)
 
                 }
-            }else{
-                guard let user = results?.user else {return}
+            } else {
+                guard let user = results?.user else {
+                  return
+                }
 
                 self.db.collection("RestaurantProfile").document(user.uid).setData([
                     "email": String(user.email!),
@@ -88,23 +126,21 @@ class LoginRestVC: UIViewController {
               self.transitionToHome()
 //                self.navigationController?.popToRootViewController(animated: true)
             }
-
-
         }
     }
   
   
   func transitionToHome() {
     
-    
-    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as! UINavigationController
+    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as! UITabBarController
     
     view.window?.rootViewController = homeViewController
     view.window?.makeKeyAndVisible()
-    present(homeViewController, animated: true, completion: nil)
+    present(homeViewController, animated: true,
+            completion: nil)
   }
-
 }
+
 
 extension LoginRestVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

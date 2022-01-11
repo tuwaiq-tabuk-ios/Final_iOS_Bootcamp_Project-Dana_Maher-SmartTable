@@ -21,10 +21,8 @@ class LoginUserVC: UIViewController {
         super.viewDidLoad()
       self.dismissKeyboard()
       overrideUserInterfaceStyle = .light
-          navigationItem.setHidesBackButton(true, animated: true)
-        
-
-        
+//          navigationItem.setHidesBackButton(true, animated: true)
+      navigationItem.backButtonTitle = "Back"
     }
     
   @IBAction func Login(_ sender: UIButton) {
@@ -37,43 +35,70 @@ class LoginUserVC: UIViewController {
         guard let password = passwordTF.text else {return}
         print("clicked")
         if !email.isEmpty && !password.isEmpty {
-            loginUsing(email: email, password: password)
-        }else{
-            let alert = UIAlertController(title: "Oops!", message: "please make sure email and password are not empty.", preferredStyle: .alert)
+            loginUsing(email: email,
+                       password: password)
+          
+        } else {
+            let alert = UIAlertController(title: "Oops!",
+                                          message: "please make sure email and password are not empty.",
+                                          preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: .cancel,
+                                          handler: nil))
             
-            present(alert, animated: true)
+            present(alert,
+                    animated: true)
         }
-        
     }
     
-    private func loginUsing(email: String, password: String) {
+  
+    private func loginUsing(email: String,
+                            password: String) {
         print("clicked")
-        Auth.auth().signIn(withEmail: email, password: password) { results, error in
+        Auth.auth().signIn(withEmail: email,
+                           password: password) { results, error in
             
             if let error = error as NSError? {
                 switch AuthErrorCode(rawValue: error.code) {
                 case .wrongPassword:
                     
-                    let alert = UIAlertController(title: "Oops!", message: "you entered a wrong password", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                    
+                    let alert = UIAlertController(title: "Oops!",
+                                                  message: "you entered a wrong password",
+                                                  preferredStyle: .alert)
+                  
+                    alert.addAction(UIAlertAction(title: "OK",
+                                                  style: .cancel,
+                                                  handler: nil))
+                  
+                    self.present(alert,
+                                 animated: true)
                 case .invalidEmail:
                     
-                    let alert = UIAlertController(title: "Oops!", message: "are sure you typed the email correctly?", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                    
+                    let alert = UIAlertController(title: "Oops!",
+                                                  message: "are sure you typed the email correctly?",
+                                                  preferredStyle: .alert)
+                  
+                    alert.addAction(UIAlertAction(title: "OK",
+                                                  style: .cancel,
+                                                  handler: nil))
+                  
+                    self.present(alert,
+                                 animated: true)
+            
                 default:
-                    
-                    let alert = UIAlertController(title: "Oops!", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                    
+                    let alert = UIAlertController(title: "Oops!",
+                                                  message: "\(error.localizedDescription)",
+                                                  preferredStyle: .alert)
+                  
+                    alert.addAction(UIAlertAction(title: "OK",
+                                                  style: .cancel,
+                                                  handler: nil))
+                  
+                    self.present(alert,
+                                 animated: true)
                 }
-            }else{
+            } else {
                 guard let user = results?.user else {return}
                 
                 self.db.collection("UserProfile").document(user.uid).setData([
@@ -89,14 +114,13 @@ class LoginUserVC: UIViewController {
               self.transitionToHome()
 //                self.navigationController?.popToRootViewController(animated: true)
             }
-            
-            
         }
     }
+  
+  
   func transitionToHome() {
     
-    
-    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as! UINavigationController
+    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as! UITabBarController
     
     view.window?.rootViewController = homeViewController
     view.window?.makeKeyAndVisible()
@@ -105,6 +129,7 @@ class LoginUserVC: UIViewController {
     
   }
 }
+
 
 extension LoginUserVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
