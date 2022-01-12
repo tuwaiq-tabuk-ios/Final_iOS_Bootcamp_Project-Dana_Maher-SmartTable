@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class AddDescriptionVC: UIViewController {
+  
     let db = Firestore.firestore()
     
     let limitLabel: UILabel = {
@@ -24,7 +25,7 @@ class AddDescriptionVC: UIViewController {
     
     let restTV: UITextView = {
         let tf = UITextView()
-//        tf.setupTextView()
+        tf.setupTextView()
         return tf
     }()
     
@@ -35,18 +36,20 @@ class AddDescriptionVC: UIViewController {
         return btn
     }()
     
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       self.dismissKeyboard()
       overrideUserInterfaceStyle = .light
-          navigationItem.setHidesBackButton(true, animated: true)
-        
-
+          navigationItem.setHidesBackButton(true,
+                                            animated: true)
+  
         view.backgroundColor = .stBackground
         setupPresenetationMode()
         setupView()
     }
 
+  
     private func setupPresenetationMode() {
         if let presentationController = presentationController as? UISheetPresentationController {
             presentationController.detents = [
@@ -57,36 +60,52 @@ class AddDescriptionVC: UIViewController {
         }
     }
     
+  
     private func setupView() {
         view.addSubview(limitLabel)
         view.addSubview(restTV)
         view.addSubview(restButton)
         restTV.delegate = self
-        restButton.addTarget(self, action: #selector(sendDescription), for: .touchUpInside)
+        restButton.addTarget(self,
+                             action: #selector(sendDescription),
+                             for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             
             limitLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            limitLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            limitLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            limitLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                 constant: -20),
+            limitLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                constant: 20),
             limitLabel.heightAnchor.constraint(equalToConstant: 35),
             
-            restTV.topAnchor.constraint(equalTo: limitLabel.bottomAnchor, constant: 0),
-            restTV.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            restTV.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            restTV.topAnchor.constraint(equalTo: limitLabel.bottomAnchor,
+                                        constant: 0),
+            restTV.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                             constant: -20),
+            restTV.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                            constant: 20),
             restTV.heightAnchor.constraint(equalToConstant: 80),
-            restButton.topAnchor.constraint(equalTo: restTV.bottomAnchor, constant: 5),
-            restButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            restButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            restButton.topAnchor.constraint(equalTo: restTV.bottomAnchor,
+                                            constant: 5),
+            restButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                 constant: -20),
+            restButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                constant: 20),
             restButton.heightAnchor.constraint(equalToConstant: 45),
-            
-            
-            
         ])
     }
+  
+  
     @objc private func sendDescription() {
-        guard let userNewText = restTV.text else {return}
-        guard let currentUser = Auth.auth().currentUser else {return}
+        guard let userNewText = restTV.text else {
+          return
+          
+        }
+        guard let currentUser = Auth.auth().currentUser else {
+          return
+        }
+      
         self.db.collection("RestaurantProfile").document(currentUser.uid).setData([
             "restaurantDescription": userNewText
         ], merge: true) { err in
@@ -95,7 +114,8 @@ class AddDescriptionVC: UIViewController {
             } else {
                 print("Document successfully written!")
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true,
+                                 completion: nil)
                 }
             }
         }
@@ -103,10 +123,19 @@ class AddDescriptionVC: UIViewController {
     
 }
 
+
 extension AddDescriptionVC: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView,
+                  shouldChangeTextIn range: NSRange,
+                  replacementText text: String) -> Bool {
+      
         let currentText = textView.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else { return false }
+        guard let stringRange = Range(range,
+                                      in: currentText) else {
+          return false
+          
+        }
+      
         let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
         limitLabel.text = "Your Description: characters Limit " + "80/" + "\(updatedText.count - 1)"
         return updatedText.count <= 80

@@ -16,8 +16,6 @@ final  class MainTF: UITextField {
             return CGRect(x: bounds.width - 30, y: 0, width: 20 , height: bounds.height)
         }
     
-    
-    
     var padding = UIEdgeInsets(top: 0, left: 10 , bottom: 0, right: 5)
     override public func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: padding)
@@ -29,20 +27,21 @@ final  class MainTF: UITextField {
         return bounds.inset(by: padding)
        }
     
-    
-    
+  
     @IBInspectable var leftImage: UIImage? {
         didSet {
             updateView()
         }
     }
     
+  
     @IBInspectable var withBorder: Bool = true  {
         didSet {
             updateView()
         }
     }
     
+  
     @IBInspectable var leftPadding: CGFloat = 10
     let textPadding: CGFloat = 23
     @IBInspectable var color: UIColor = UIColor.lightGray {
