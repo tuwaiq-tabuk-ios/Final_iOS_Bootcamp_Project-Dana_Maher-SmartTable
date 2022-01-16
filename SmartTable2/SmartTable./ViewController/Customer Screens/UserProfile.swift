@@ -2,7 +2,7 @@
 //  UserProfile.swift
 //  SmartTabel
 //
-//  Created by Faisal on 06/01/2022.
+//  Created by macbook air on 06/01/2022.
 //
 
 
@@ -99,12 +99,16 @@ class UserProfile: UIViewController {
     }
     
     @objc func signOutButtonTapped() {
-        do{
-            try Auth.auth().signOut()
-            self.navigationController?.popToRootViewController(animated: true)
-        }catch{print("Error")}
-        
-        
+      do {
+                try Auth.auth().signOut()
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeVC") as? UINavigationController {
+                  vc.modalPresentationStyle = .fullScreen
+                  self.present(vc, animated: true, completion: nil)
+                }
+              } catch{
+                print("ERROR in signout",error.localizedDescription)
+              }
+            
     }
 
     @objc func addDescriptionButtonTapped() {
