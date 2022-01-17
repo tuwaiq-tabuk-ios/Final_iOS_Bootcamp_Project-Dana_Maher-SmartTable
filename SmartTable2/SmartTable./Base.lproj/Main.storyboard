@@ -106,7 +106,7 @@
                                 <rect key="frame" x="20" y="348" width="374" height="200"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XwI-pJ-oyT">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="42.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -116,7 +116,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EH0-cz-6iI">
-                                        <rect key="frame" x="0.0" y="52.5" width="374" height="42.5"/>
+                                        <rect key="frame" x="0.0" y="42" width="374" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -125,19 +125,33 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kIw-wR-YyK" customClass="MainTF" customModule="SmartTable_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="105" width="374" height="42.5"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kIw-wR-YyK" customClass="CMTexField" customModule="SmartTable_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="84" width="374" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isPasswordTF" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="-16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isPasswordTF" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ConfirmPassword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpD-xn-RRM" userLabel="passwordCorrect" customClass="CMTexField" customModule="SmartTable_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="126" width="374" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="-16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isPasswordTF" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4im-yV-zbz">
-                                        <rect key="frame" x="0.0" y="157.5" width="374" height="42.5"/>
+                                        <rect key="frame" x="0.0" y="168" width="374" height="32"/>
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Create Account"/>
@@ -198,15 +212,18 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7er-7k-SbP" customClass="MainTF" customModule="SmartTable_" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7er-7k-SbP" customClass="CMTexField" customModule="SmartTable_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="73.5" width="374" height="53"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isPasswordTF" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="-16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isPasswordTF" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D68-Cd-la3">
@@ -331,25 +348,39 @@
                                 <rect key="frame" x="20" y="338" width="374" height="250"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your restaurant name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z7e-PJ-Xzy">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RLF-5O-VtT">
-                                        <rect key="frame" x="0.0" y="65" width="374" height="55"/>
+                                        <rect key="frame" x="0.0" y="52" width="374" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jLN-wg-V52" customClass="MainTF" customModule="SmartTable_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="130" width="374" height="55"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jLN-wg-V52" customClass="CMTexField" customModule="SmartTable_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="104" width="374" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="-16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isPasswordTF" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ConfirmPassword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e0x-Gf-nak" userLabel="passwordCorrect" customClass="CMTexField" customModule="SmartTable_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="156" width="374" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="-16"/>
+                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPasswordTF" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7k-Mx-q2h">
-                                        <rect key="frame" x="0.0" y="195" width="374" height="55"/>
+                                        <rect key="frame" x="0.0" y="208" width="374" height="42"/>
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Create Account"/>
@@ -381,6 +412,7 @@
                         <outlet property="createAccountButton" destination="e7k-Mx-q2h" id="6y7-rb-86o"/>
                         <outlet property="emailTF" destination="RLF-5O-VtT" id="LUo-6a-VNy"/>
                         <outlet property="nameTF" destination="Z7e-PJ-Xzy" id="Rgw-zL-M6e"/>
+                        <outlet property="passwordCorrectTF" destination="e0x-Gf-nak" id="cCn-PV-0R0"/>
                         <outlet property="passwordTF" destination="jLN-wg-V52" id="AaI-Hz-W2O"/>
                     </connections>
                 </viewController>
@@ -404,11 +436,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Le5-lo-JQO" customClass="MainTF" customModule="SmartTable_" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Le5-lo-JQO" customClass="CMTexField" customModule="SmartTable_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="73.5" width="394" height="53"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="-16"/>
+                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPasswordTF" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -595,11 +630,11 @@
             </objects>
             <point key="canvasLocation" x="9160.8695652173919" y="1419.6428571428571"/>
         </scene>
-        <!--Item-->
+        <!--Reservation-->
         <scene sceneID="8WM-Dg-Klr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uva-yx-3Iq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="g24-oN-qwb"/>
+                    <tabBarItem key="tabBarItem" title="Reservation" image="rectangle.dashed.and.paperclip" catalog="system" id="g24-oN-qwb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AbU-t7-mOm">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -617,20 +652,27 @@
     </scenes>
     <designables>
         <designable name="7er-7k-SbP">
-            <size key="intrinsicContentSize" width="144.5" height="34"/>
+            <size key="intrinsicContentSize" width="118.5" height="34"/>
         </designable>
         <designable name="Le5-lo-JQO">
-            <size key="intrinsicContentSize" width="144.5" height="34"/>
+            <size key="intrinsicContentSize" width="118.5" height="34"/>
+        </designable>
+        <designable name="dpD-xn-RRM">
+            <size key="intrinsicContentSize" width="170" height="34"/>
+        </designable>
+        <designable name="e0x-Gf-nak">
+            <size key="intrinsicContentSize" width="170" height="34"/>
         </designable>
         <designable name="jLN-wg-V52">
-            <size key="intrinsicContentSize" width="144" height="34"/>
+            <size key="intrinsicContentSize" width="118" height="34"/>
         </designable>
         <designable name="kIw-wR-YyK">
-            <size key="intrinsicContentSize" width="144" height="34"/>
+            <size key="intrinsicContentSize" width="118" height="34"/>
         </designable>
     </designables>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="rectangle.dashed.and.paperclip" catalog="system" width="128" height="99"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

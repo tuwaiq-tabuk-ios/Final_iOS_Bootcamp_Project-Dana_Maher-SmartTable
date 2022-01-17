@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
   
-  struct Storyboard {
+  struct K {
     static let homeViewController = "HomeVC"
     static let homeViewController2 = "WelcomeVC"
   }

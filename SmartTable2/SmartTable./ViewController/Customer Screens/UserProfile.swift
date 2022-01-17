@@ -12,8 +12,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class UserProfile: UIViewController {
+  
     let db = Firestore.firestore()
-
     
     let containerView: UIView = {
         let view = UIView()
@@ -24,8 +24,6 @@ class UserProfile: UIViewController {
         return view
     }()
     
-
-    
     let userNameLabel: UILabel = {
         let name = UILabel()
         name.font = UIFont.systemFont(ofSize: 29, weight: .bold)
@@ -35,8 +33,6 @@ class UserProfile: UIViewController {
         return name
     }()
 
-
-    
     let signOutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setupButton(with: "Sign out")
@@ -48,19 +44,19 @@ class UserProfile: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .stBackground
+      overrideUserInterfaceStyle = .light
+//        view.backgroundColor = .stBackground
         title = "User Profile"
         setUpLabels()
     }
+  
+  
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchCurrentUsers()
     }
     
-    
-    
-    
-    
+
     func setUpLabels() {
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,22 +67,11 @@ class UserProfile: UIViewController {
         containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive                                = true
         containerView.widthAnchor.constraint(equalToConstant: 325).isActive                                         = true
         containerView.heightAnchor.constraint(equalToConstant: 155).isActive                                        = true
-        
-
-        
-        
-
-        
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(userNameLabel)
         userNameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20).isActive = true
         userNameLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-        
-        
-        
-        
 
-        
         containerView.addSubview(signOutButton)
         
         signOutButton.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 20).isActive = true
@@ -94,10 +79,10 @@ class UserProfile: UIViewController {
         signOutButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
         signOutButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         signOutButton.addTarget(self, action: #selector(signOutButtonTapped), for: .touchUpInside)
-        
 
     }
     
+  
     @objc func signOutButtonTapped() {
       do {
                 try Auth.auth().signOut()
@@ -111,6 +96,7 @@ class UserProfile: UIViewController {
             
     }
 
+  
     @objc func addDescriptionButtonTapped() {
         let sheetViewController = AddDescriptionVC(nibName: nil, bundle: nil)
         self.present(sheetViewController, animated: true, completion: nil)
@@ -132,10 +118,7 @@ class UserProfile: UIViewController {
                             {
                                 DispatchQueue.main.async {
                                     self.userNameLabel.text = userName
-//                                    self.userDescriptionLabel.text = userEmail
                                 }
-                                
-                                
                             }
                         }
                     }

@@ -8,15 +8,14 @@
 import UIKit
 import Firebase
 class RestaurantDetailVC: UIViewController {
-  
 
     var restImageURL: String?
     var restTitle: String?
     var restDescription: String?
     var restaurantID: String?
     var restaurantLocation: String?
+  
     private let storage = Storage.storage()
-    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
@@ -30,27 +29,22 @@ class RestaurantDetailVC: UIViewController {
   
       private let restTitleLabel: UILabel = {
           let title = UILabel()
-          title.textColor     =  .label
-          title.numberOfLines   = 0
-          title.textAlignment   = .left
-          title.font          = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: 25, weight: .bold))
+          title.textColor =  .label
+          title.numberOfLines = 0
+          title.textAlignment = .left
+          title.font = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: 25, weight: .bold))
           return title
       }()
     
-  
-  
     private let restBodyLabel: UILabel = {
-        let description             = UILabel()
-        description.textColor       =  .label
-        description.font            = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: 16, weight: .regular))
-        description.numberOfLines   = 0
-        description.textAlignment   = .left
+        let description = UILabel()
+        description.textColor =  .label
+        description.font = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: 16, weight: .regular))
+        description.numberOfLines = 0
+        description.textAlignment = .left
 
         return description
     }()
-
-
-  
 
       let reserveTableButton: UIButton = {
         let button = UIButton(type: .system)
@@ -59,10 +53,10 @@ class RestaurantDetailVC: UIViewController {
     }()
 
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
       
+      overrideUserInterfaceStyle = .light
       
       restTitleLabel.text = restTitle
       restBodyLabel.text = restDescription
@@ -82,6 +76,7 @@ class RestaurantDetailVC: UIViewController {
        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+20)
     }
     
+  
     private func setupView() {
         contentView.backgroundColor = .stBackground
         scrollView.backgroundColor = .stBackground
@@ -92,7 +87,6 @@ class RestaurantDetailVC: UIViewController {
         restBodyLabel.translatesAutoresizingMaskIntoConstraints = false
         reserveTableButton.translatesAutoresizingMaskIntoConstraints = false
 
-      
         contentView.addSubview(restImageView)
         scrollView.addSubview(reserveTableButton)
         contentView.addSubview(restTitleLabel)
@@ -101,8 +95,7 @@ class RestaurantDetailVC: UIViewController {
         reserveTableButton.addTarget(self, action: #selector(reserveTableButtonTapped), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            
-          
+    
             restImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 5),
             restImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             restImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -121,19 +114,10 @@ class RestaurantDetailVC: UIViewController {
             restBodyLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             restBodyLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
-        
-        
-
-        
-        
-
-        
+  
     }
   
-  
-  
-  
-  
+ 
     @objc func reserveTableButtonTapped() {
         print("Tapped")
         let sheetViewController = AddReservationVC(nibName: nil, bundle: nil)
@@ -164,6 +148,7 @@ class RestaurantDetailVC: UIViewController {
         }
     }
     
+  
     func setupScrollView(){
             scrollView.isScrollEnabled = true
            scrollView.translatesAutoresizingMaskIntoConstraints = false

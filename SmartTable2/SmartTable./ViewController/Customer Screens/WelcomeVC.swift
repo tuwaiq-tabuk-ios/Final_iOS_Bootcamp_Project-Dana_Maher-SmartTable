@@ -21,7 +21,6 @@ class WelcomeVC: UIViewController {
         super.viewDidLoad()
       self.dismissKeyboard()
       overrideUserInterfaceStyle = .light
-//          navigationItem.setHidesBackButton(true, animated: true)
     }
 
   

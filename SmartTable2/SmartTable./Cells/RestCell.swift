@@ -12,9 +12,6 @@ class RestCell: UITableViewCell {
     
   static let id = "cell"
   
-
-  
-  
   lazy var restImage: UIImageView = {
       $0.contentMode = .scaleAspectFill
       $0.layer.cornerRadius = 10
@@ -22,6 +19,7 @@ class RestCell: UITableViewCell {
       $0.clipsToBounds = true
       return $0
   }(UIImageView())
+  
   let restName: UILabel = {
       $0.textColor = .black
       $0.textAlignment = .left
@@ -29,6 +27,7 @@ class RestCell: UITableViewCell {
       $0.font = UIFont.systemFont(ofSize: 16, weight: .medium)
       return $0
   }(UILabel())
+  
   let restEmail : UILabel = {
       $0.textColor = .black
       $0.numberOfLines = 0
@@ -42,10 +41,14 @@ class RestCell: UITableViewCell {
       fatalError("init(coder:) has not been implemented")
 
   }
+  
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
       super.init(style: style, reuseIdentifier: reuseIdentifier)
       setupView()
   }
+  
+  
   private func setupView() {
       self.clipsToBounds = true
       restImage.translatesAutoresizingMaskIntoConstraints = false
@@ -67,8 +70,6 @@ class RestCell: UITableViewCell {
           restEmail.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
       ])
   }
-  
-  
 }
 
 

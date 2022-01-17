@@ -13,30 +13,36 @@ class RestaurantReservationVC: UIViewController {
     
     private let db = Firestore.firestore()
     private let searchBar = UISearchController()
+  
     private var reservations : [Reservations] = []
     private var filteredResults: [Reservations] = []
+  
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+      overrideUserInterfaceStyle = .light
+      
         view.backgroundColor = .stBackground
         title = "Reservations"
         uiSettengs()
         getData()
     }
     
+  
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
     
     
-    
     func uiSettengs(){
         tableView.backgroundColor = .stBackground
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ResCell.self, forCellReuseIdentifier: ResCell.id)
+        tableView.register(ResCell.self,
+                           forCellReuseIdentifier: ResCell.id)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 400
         tableView.delegate = self
@@ -80,6 +86,7 @@ class RestaurantReservationVC: UIViewController {
             }
     }
     
+  
     func getData(){
         guard let user = Auth.auth().currentUser else {return}
         
@@ -99,13 +106,11 @@ class RestaurantReservationVC: UIViewController {
                             }
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
-                                
                             }
                             
                         }
                     }
-            }else if isRest == "no" {
-               
+            } else if isRest == "no" {
                 self.db.collection("UserProfile").document(user.uid).collection("Reservations")
                     .addSnapshotListener { (querySnapshot, error) in
                         
@@ -116,42 +121,35 @@ class RestaurantReservationVC: UIViewController {
                             for document in querySnapshot!.documents{
                                 let data = document.data()
                                 self.reservations.append(Reservations(date: data["date"] as? String ?? "NA" ,  email: data["email"] as? String ?? "NA", name: data["name"] as? String ?? "NA", numberOfSeats: data["number of seats"] as? String ?? "NA", seat: data["seat"] as? String ?? "NA", section: data["section"] as? String ?? "NA", location: data["restLocation"] as? String ?? "NA"))
-                               
                             }
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
-                                
                             }
-                            
                         }
                     }
             }
         }
-
-        
-        
-        
     }
-    
-    
-    
 }
 
-extension RestaurantReservationVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+extension RestaurantReservationVC: UITableViewDelegate,
+                                   UITableViewDataSource {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         if searchBar.isActive && !searchBar.searchBar.text!.isEmpty {
             return filteredResults.count
-        }else{
+        } else {
             return reservations.count
         }
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  
+  
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ResCell.id, for: indexPath) as! ResCell
-        
-        
-        
+  
         if searchBar.isActive && !searchBar.searchBar.text!.isEmpty {
-            
             
             cell.dateLbl.text = filteredResults[indexPath.row].date
             cell.nameLbl.text = filteredResults[indexPath.row].name
@@ -161,7 +159,7 @@ extension RestaurantReservationVC: UITableViewDelegate, UITableViewDataSource {
             cell.seatLbl.text = "seat: " + filteredResults[indexPath.row].seat
             
             return cell
-        }else{
+        } else {
             cell.dateLbl.text = reservations[indexPath.row].date
             cell.nameLbl.text = reservations[indexPath.row].name
             cell.emailLbl.text = reservations[indexPath.row].email
@@ -170,15 +168,19 @@ extension RestaurantReservationVC: UITableViewDelegate, UITableViewDataSource {
             cell.seatLbl.text = "seat: " + reservations[indexPath.row].seat
             return cell
         }
-        
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  
+  
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath,
+                              animated: true)
         
         isRestaurant { isRest in
             if isRest == "no" {
@@ -188,15 +190,19 @@ extension RestaurantReservationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let lat = Double(message[0]) else { return }
                 guard let lon = Double(message[1]) else { return }
                 
-                let userCoordinates = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                let userCoordinates = CLLocationCoordinate2D(latitude: lat,
+                                                             longitude: lon)
                 
                 let regionDistance:CLLocationDistance = 200
-                let regionSpan = MKCoordinateRegion(center: userCoordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+                let regionSpan = MKCoordinateRegion(center: userCoordinates,
+                                                    latitudinalMeters: regionDistance,
+                                                    longitudinalMeters: regionDistance)
                 let options = [
                     MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
                     MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
                 ]
-                let placemark = MKPlacemark(coordinate: userCoordinates, addressDictionary: nil)
+                let placemark = MKPlacemark(coordinate: userCoordinates,
+                                            addressDictionary: nil)
                 let mapItem = MKMapItem(placemark: placemark)
                 mapItem.name = "Enjoy your meal!"
                 mapItem.openInMaps(launchOptions: options)
@@ -206,20 +212,20 @@ extension RestaurantReservationVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
 extension RestaurantReservationVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         if !searchController.isActive {
             return
         }
-        
         let searchBar = searchBar.searchBar
         
         if let userEnteredSearchText = searchBar.text {
             findResultsBasedOnSearch(with: userEnteredSearchText)
         }
-        
-        
     }
+  
+  
     private func findResultsBasedOnSearch(with text: String)  {
         filteredResults.removeAll()
         if !text.isEmpty {
@@ -227,7 +233,7 @@ extension RestaurantReservationVC: UISearchResultsUpdating, UISearchBarDelegate 
                 item.name.lowercased().contains(text.lowercased())
             }
             tableView.reloadData()
-        }else{
+        } else {
             tableView.reloadData()
         }
     }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D0151F0B27903FC400520DD5 /* RestaurentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0151F0A27903FC300520DD5 /* RestaurentProfile.swift */; };
-		D0151F0E279045C700520DD5 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0151F0D279045C700520DD5 /* TabBar.swift */; };
 		D0168D0127900CC200B48610 /* ResCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0168D0027900CC200B48610 /* ResCell.swift */; };
 		D0168D072790172300B48610 /* RestaurantReservationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0168D062790172300B48610 /* RestaurantReservationVC.swift */; };
 		D0168D092790172800B48610 /* AddReservationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0168D082790172800B48610 /* AddReservationVC.swift */; };
@@ -29,8 +28,7 @@
 		D0D49A032785D57700E209F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0D49A022785D57700E209F9 /* FirebaseAuth */; };
 		D0D49A052785D57700E209F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D0D49A042785D57700E209F9 /* FirebaseFirestore */; };
 		D0D49A072785D57700E209F9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D0D49A062785D57700E209F9 /* FirebaseStorage */; };
-		D0D49A092785D58C00E209F9 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D49A082785D58C00E209F9 /* UIView.swift */; };
-		D0D49A0B2785D59000E209F9 /* STColors+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D49A0A2785D59000E209F9 /* STColors+Ext.swift */; };
+		D0D49A092785D58C00E209F9 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D49A082785D58C00E209F9 /* UIView+Ext.swift */; };
 		D0D49A0E2785D59A00E209F9 /* RestaurentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D49A0D2785D59A00E209F9 /* RestaurentModel.swift */; };
 		D0D49A132785D5E000E209F9 /* CreateAccountForUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D49A102785D5E000E209F9 /* CreateAccountForUserVC.swift */; };
 		D0D49A142785D5E000E209F9 /* LoginUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D49A112785D5E000E209F9 /* LoginUserVC.swift */; };
@@ -39,14 +37,14 @@
 		D0D49A1B2785D5EB00E209F9 /* LoginRestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D49A182785D5EB00E209F9 /* LoginRestVC.swift */; };
 		D0D49A1C2785D5EB00E209F9 /* restaurantWelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D49A192785D5EB00E209F9 /* restaurantWelcomeScreen.swift */; };
 		D0D4E4A52786E6F5003F2565 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0D4E4A42786E6F5003F2565 /* GoogleService-Info.plist */; };
-		D0D4E4A72786FBAD003F2565 /* MainTF 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D4E4A62786FBAD003F2565 /* MainTF 3.swift */; };
+		D0D4E4A72786FBAD003F2565 /* CMTexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D4E4A62786FBAD003F2565 /* CMTexField.swift */; };
 		D0D4E4BC27871383003F2565 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D4E4BB27871383003F2565 /* HomeVC.swift */; };
+		D0D5192A279603C700BC644E /* STColors+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D51929279603C700BC644E /* STColors+Ext.swift */; };
 		D0F522D3278D92F3009813A1 /* STTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F522D2278D92F3009813A1 /* STTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D0151F0A27903FC300520DD5 /* RestaurentProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurentProfile.swift; sourceTree = "<group>"; };
-		D0151F0D279045C700520DD5 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		D0168D0027900CC200B48610 /* ResCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCell.swift; sourceTree = "<group>"; };
 		D0168D062790172300B48610 /* RestaurantReservationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantReservationVC.swift; sourceTree = "<group>"; };
 		D0168D082790172800B48610 /* AddReservationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReservationVC.swift; sourceTree = "<group>"; };
@@ -65,8 +63,7 @@
 		D0D499F42785D50800E209F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0D499F72785D50800E209F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0D499F92785D50800E209F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0D49A082785D58C00E209F9 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		D0D49A0A2785D59000E209F9 /* STColors+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STColors+Ext.swift"; sourceTree = "<group>"; };
+		D0D49A082785D58C00E209F9 /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		D0D49A0D2785D59A00E209F9 /* RestaurentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurentModel.swift; sourceTree = "<group>"; };
 		D0D49A102785D5E000E209F9 /* CreateAccountForUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountForUserVC.swift; sourceTree = "<group>"; };
 		D0D49A112785D5E000E209F9 /* LoginUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserVC.swift; sourceTree = "<group>"; };
@@ -75,8 +72,9 @@
 		D0D49A182785D5EB00E209F9 /* LoginRestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRestVC.swift; sourceTree = "<group>"; };
 		D0D49A192785D5EB00E209F9 /* restaurantWelcomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restaurantWelcomeScreen.swift; sourceTree = "<group>"; };
 		D0D4E4A42786E6F5003F2565 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D0D4E4A62786FBAD003F2565 /* MainTF 3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainTF 3.swift"; sourceTree = "<group>"; };
+		D0D4E4A62786FBAD003F2565 /* CMTexField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMTexField.swift; sourceTree = "<group>"; };
 		D0D4E4BB27871383003F2565 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		D0D51929279603C700BC644E /* STColors+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STColors+Ext.swift"; sourceTree = "<group>"; };
 		D0F522D2278D92F3009813A1 /* STTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,23 +93,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D05D4A27278B14E600D0DDB8 /* Help */ = {
+		D05D4A27278B14E600D0DDB8 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
-				D0D4E4A62786FBAD003F2565 /* MainTF 3.swift */,
-				D0D49A082785D58C00E209F9 /* UIView.swift */,
+				D0D4E4A62786FBAD003F2565 /* CMTexField.swift */,
 			);
-			path = Help;
+			path = TextField;
 			sourceTree = "<group>";
 		};
 		D05D4A28278B152300D0DDB8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				D02B40052786CCD4009EBC53 /* Constants.swift */,
+				D0D49A082785D58C00E209F9 /* UIView+Ext.swift */,
 				D05D4A21278B004700D0DDB8 /* STButtons+Ext.swift */,
-				D0D49A0A2785D59000E209F9 /* STColors+Ext.swift */,
+				D0D51929279603C700BC644E /* STColors+Ext.swift */,
 				D0F522D2278D92F3009813A1 /* STTextView.swift */,
-				D0151F0D279045C700520DD5 /* TabBar.swift */,
 				D05D4A25278B0AFC00D0DDB8 /* Keyboard+Ext.swift */,
 			);
 			path = Extension;
@@ -136,7 +133,7 @@
 		D0D499EA2785D50400E209F9 /* SmartTable. */ = {
 			isa = PBXGroup;
 			children = (
-				D05D4A27278B14E600D0DDB8 /* Help */,
+				D0D5192B279616B900BC644E /* Custom_Views */,
 				D05D4A28278B152300D0DDB8 /* Extension */,
 				D0D4E4A827870516003F2565 /* Cells */,
 				D0D49A0C2785D59A00E209F9 /* Model */,
@@ -204,6 +201,14 @@
 				D0168D0027900CC200B48610 /* ResCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		D0D5192B279616B900BC644E /* Custom_Views */ = {
+			isa = PBXGroup;
+			children = (
+				D05D4A27278B14E600D0DDB8 /* TextField */,
+			);
+			path = Custom_Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,8 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0151F0E279045C700520DD5 /* TabBar.swift in Sources */,
-				D0D49A092785D58C00E209F9 /* UIView.swift in Sources */,
+				D0D49A092785D58C00E209F9 /* UIView+Ext.swift in Sources */,
 				D0D4E4BC27871383003F2565 /* HomeVC.swift in Sources */,
 				D0168D072790172300B48610 /* RestaurantReservationVC.swift in Sources */,
 				D0AD78C9278DB837001AB8D5 /* UserProfile.swift in Sources */,
@@ -309,10 +313,10 @@
 				D0D49A1A2785D5EB00E209F9 /* CreateAccountForRestVC.swift in Sources */,
 				D05D4A22278B004700D0DDB8 /* STButtons+Ext.swift in Sources */,
 				D0168D0127900CC200B48610 /* ResCell.swift in Sources */,
-				D0D49A0B2785D59000E209F9 /* STColors+Ext.swift in Sources */,
-				D0D4E4A72786FBAD003F2565 /* MainTF 3.swift in Sources */,
+				D0D4E4A72786FBAD003F2565 /* CMTexField.swift in Sources */,
 				D05D4A26278B0AFC00D0DDB8 /* Keyboard+Ext.swift in Sources */,
 				D05D4A24278B047000D0DDB8 /* AddDescriptionVC.swift in Sources */,
+				D0D5192A279603C700BC644E /* STColors+Ext.swift in Sources */,
 				D0AF58B9278EF69F00E6A253 /* RestCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

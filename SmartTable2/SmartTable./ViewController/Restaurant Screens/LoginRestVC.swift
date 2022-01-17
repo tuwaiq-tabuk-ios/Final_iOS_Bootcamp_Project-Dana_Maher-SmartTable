@@ -14,18 +14,18 @@ import FirebaseFirestore
 
 class LoginRestVC: UIViewController {
   
+  let db = Firestore.firestore()
+
   // MAKR: - IBOutlet
   @IBOutlet weak var emailTF: UITextField!
   @IBOutlet weak var passwordTF: UITextField!
   @IBOutlet weak var loginButton: UIButton!
   
-    let db = Firestore.firestore()
   
     override func viewDidLoad() {
         super.viewDidLoad()
       self.dismissKeyboard()
       overrideUserInterfaceStyle = .light
-//          navigationItem.setHidesBackButton(true, animated: true)
       navigationItem.backButtonTitle = "Back"
     }
   
@@ -125,7 +125,6 @@ class LoginRestVC: UIViewController {
                     }
                 }
               self.transitionToHome()
-//                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
@@ -133,7 +132,7 @@ class LoginRestVC: UIViewController {
   
   func transitionToHome() {
     
-    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as! UITabBarController
+    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.K.homeViewController) as! UITabBarController
     
     view.window?.rootViewController = homeViewController
     view.window?.makeKeyAndVisible()

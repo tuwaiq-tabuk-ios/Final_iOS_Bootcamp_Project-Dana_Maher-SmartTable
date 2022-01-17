@@ -12,9 +12,6 @@ class ResCell: UITableViewCell {
     
     static let id = "cell123"
     
-    
-    
-    
     let dateLbl: UILabel = {
         $0.textColor = .black.withAlphaComponent(0.5)
         $0.textAlignment = .left
@@ -79,11 +76,14 @@ class ResCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
         
     }
+  
+  
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
     
+  
     private func setupView() {
         self.clipsToBounds = true
         
@@ -136,9 +136,7 @@ class ResCell: UITableViewCell {
             
         ])
         
-    }
-    
-    
+    } 
 }
 
 

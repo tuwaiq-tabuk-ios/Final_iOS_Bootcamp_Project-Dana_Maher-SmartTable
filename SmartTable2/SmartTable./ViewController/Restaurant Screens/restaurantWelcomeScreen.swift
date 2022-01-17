@@ -16,25 +16,13 @@ class restaurantWelcomeScreen: UIViewController {
   
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
-  
-  
 
-//    let illustrationImage: UIImageView = {
-//        let image = UIImageView()
-//        image.image = UIImage(named: "bg")
-//        image.contentMode = .scaleAspectFit
-//        image.clipsToBounds = true
-//        image.translatesAutoresizingMaskIntoConstraints = false
-//        return image
-//    }()
-  
   // view controoler lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
       self.dismissKeyboard()
       overrideUserInterfaceStyle = .light
-//          navigationItem.setHidesBackButton(true, animated: true)
       navigationItem.backButtonTitle = "Back"
       
     }

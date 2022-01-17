@@ -12,11 +12,12 @@ import FirebaseAuth
 class AddReservationVC: UIViewController {
     
     private let db = Firestore.firestore()
+  
     private let numberOfSeatsPicker = UIPickerView()
     private let datePicker = UIDatePicker()
     
-    private var UserChoseWithFamily = ""
-    private var UserChoseIndoors = ""
+    private var UserChoseWithFamily = "single"
+    private var UserChoseIndoors = "outdoors"
     private var UserChoseSeatsNumber = ""
     private var UserChoseDate = ""
     var restaurantName: String? 
@@ -25,7 +26,8 @@ class AddReservationVC: UIViewController {
     private let titleLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black.withAlphaComponent(0.57)
-        lbl.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        lbl.font = UIFont.systemFont(ofSize: 16,
+                                     weight: .regular)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.text = "RESERVE A TABLE"
         return lbl
@@ -35,17 +37,17 @@ class AddReservationVC: UIViewController {
         
         let lbl = UILabel()
         lbl.textColor = .black.withAlphaComponent(0.57)
-        lbl.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        lbl.font = UIFont.systemFont(ofSize: 16,
+                                     weight: .regular)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
-    
-    
-    
+  
     private let userEmailLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black.withAlphaComponent(0.57)
-        lbl.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        lbl.font = UIFont.systemFont(ofSize: 16,
+                                     weight: .regular)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -53,21 +55,30 @@ class AddReservationVC: UIViewController {
     private let inOrOutsideLabel: UILabel = {
         
         let lbl = UILabel()
-        lbl.textColor               = .black.withAlphaComponent(0.57)
-        lbl.font                    = UIFont.systemFont(ofSize: 16, weight: .regular)
-        lbl.layer.cornerRadius      = 13
-        lbl.clipsToBounds           = true
+        lbl.textColor = .black.withAlphaComponent(0.57)
+        lbl.font = UIFont.systemFont(ofSize: 16,
+                                     weight: .regular)
+        lbl.layer.cornerRadius = 13
+        lbl.clipsToBounds = true
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "Do you prefer to eat indoors?"
+        lbl.text = "Do you prefer to eat outdoors?"
         return lbl
     }()
     
     private let inOrOutsideSwitch: UISwitch = {
         let switchbtn = UISwitch()
         switchbtn.tintColor = .systemGray6
-        switchbtn.thumbTintColor = UIColor(#colorLiteral(red: 0, green: 0.8117647059, blue: 0.9921568627, alpha: 1))
-        switchbtn.onTintColor = UIColor(#colorLiteral(red: 0, green: 0.8117647059, blue: 0.9921568627, alpha: 0.25))
-        switchbtn.addTarget(self, action: #selector(switchForInsideOrOutsideValueDidChange(_:)), for: .valueChanged)
+        switchbtn.thumbTintColor = UIColor(#colorLiteral(red: 0,
+                                                         green: 0.8117647059,
+                                                         blue: 0.9921568627,
+                                                         alpha: 1))
+        switchbtn.onTintColor = UIColor(#colorLiteral(red: 0,
+                                                      green: 0.8117647059,
+                                                      blue: 0.9921568627,
+                                                      alpha: 0.25))
+        switchbtn.addTarget(self,
+                            action: #selector(switchForInsideOrOutsideValueDidChange(_:)),
+                            for: .valueChanged)
         switchbtn.translatesAutoresizingMaskIntoConstraints = false
         
         return switchbtn
@@ -76,10 +87,11 @@ class AddReservationVC: UIViewController {
     private let signleOrFamilyLabel: UILabel = {
         
         let lbl = UILabel()
-        lbl.textColor               = .black.withAlphaComponent(0.57)
-        lbl.font                    = UIFont.systemFont(ofSize: 16, weight: .regular)
-        lbl.layer.cornerRadius      = 13
-        lbl.clipsToBounds           = true
+        lbl.textColor = .black.withAlphaComponent(0.57)
+        lbl.font = UIFont.systemFont(ofSize: 16,
+                                     weight: .regular)
+        lbl.layer.cornerRadius = 13
+        lbl.clipsToBounds = true
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.text = "Are you with your family?"
         return lbl
@@ -88,9 +100,16 @@ class AddReservationVC: UIViewController {
     private let signleOrFamilySwitch: UISwitch = {
         let switchbtn = UISwitch()
         switchbtn.tintColor = .systemGray6
-        switchbtn.thumbTintColor = UIColor(#colorLiteral(red: 0, green: 0.8117647059, blue: 0.9921568627, alpha: 1))
-        switchbtn.onTintColor = UIColor(#colorLiteral(red: 0, green: 0.8117647059, blue: 0.9921568627, alpha: 0.25))
-        switchbtn.addTarget(self, action: #selector(switchForsignleOrFamilyDidChange(_:)), for: .valueChanged)
+        switchbtn.thumbTintColor = UIColor(#colorLiteral(red: 0,
+                                                         green: 0.8117647059,
+                                                         blue: 0.9921568627,
+                                                         alpha: 1))
+        switchbtn.onTintColor = UIColor(#colorLiteral(red: 0,
+                                                      green: 0.8117647059,
+                                                      blue: 0.9921568627,
+                                                      alpha: 0.25))
+        switchbtn.addTarget(self, action: #selector(switchForsignleOrFamilyDidChange(_:)),
+                            for: .valueChanged)
         switchbtn.translatesAutoresizingMaskIntoConstraints = false
         return switchbtn
     }()
@@ -101,9 +120,12 @@ class AddReservationVC: UIViewController {
         return btn
     }()
     
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      overrideUserInterfaceStyle = .light
+      
         view.backgroundColor = .stBackground
         setupPresenetationMode()
         setupView()
@@ -113,26 +135,31 @@ class AddReservationVC: UIViewController {
         numberOfSeatsPicker.delegate = self
     }
     
+  
     @objc private func switchForInsideOrOutsideValueDidChange(_ sender: UISwitch) {
         if (sender.isOn){
             print("on for outside")
             UserChoseIndoors = "Outdoors"
         }
-        else{
+        else {
             print("on for inside")
             UserChoseIndoors = "Indoors"
         }
     }
+  
+  
     @objc private func switchForsignleOrFamilyDidChange(_ sender: UISwitch) {
         if (sender.isOn){
             print("with family")
             UserChoseWithFamily = "Family"
         }
-        else{
+        else {
             print("single")
             UserChoseWithFamily = "Single"
         }
     }
+  
+  
     private func setupPresenetationMode() {
         if let presentationController = presentationController as? UISheetPresentationController {
             presentationController.detents = [
@@ -142,6 +169,8 @@ class AddReservationVC: UIViewController {
             presentationController.prefersGrabberVisible = true
         }
     }
+  
+  
     private func setupDatePicker() {
         datePicker.calendar = .current
         datePicker.datePickerMode = .date
@@ -151,9 +180,13 @@ class AddReservationVC: UIViewController {
         //            datePicker.preferredDatePickerStyle = .wheels
         //        }
         
-        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
+        datePicker.addTarget(self,
+                             action: #selector(datePickerChanged(_:)),
+                             for: .valueChanged)
         
     }
+  
+  
     @objc func datePickerChanged(_ sender: UIDatePicker) {
         
         let dateFormatter = DateFormatter()
@@ -163,9 +196,11 @@ class AddReservationVC: UIViewController {
         UserChoseDate = dateFormatter.string(from: sender.date)
     }
     
+  
     private func fetchCurrentUsers() {
         guard let currentUserName = FirebaseAuth.Auth.auth().currentUser else {return}
-        db.collection("UserProfile").whereField("email", isEqualTo: String(currentUserName.email!))
+        db.collection("UserProfile").whereField("email",
+                                                isEqualTo: String(currentUserName.email!))
             .addSnapshotListener { (querySnapshot, error) in
                 
                 if let e = error {
@@ -177,15 +212,10 @@ class AddReservationVC: UIViewController {
                             if let userName = data["name"] as? String,
                                let userEmail = data["email"] as? String
                             {
-                                
-                                
                                 DispatchQueue.main.async {
                                     self.userNameLabel.text = userName
                                     self.userEmailLabel.text = userEmail
-                                    
                                 }
-                                
-                                
                             }
                         }
                     }
@@ -194,6 +224,7 @@ class AddReservationVC: UIViewController {
             }
     }
     
+  
     private func setupView() {
         
         numberOfSeatsPicker.translatesAutoresizingMaskIntoConstraints = false
@@ -208,15 +239,7 @@ class AddReservationVC: UIViewController {
         view.addSubview(signleOrFamilySwitch)
         view.addSubview(inOrOutsideSwitch)
         view.addSubview(datePicker)
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         restButton.addTarget(self, action: #selector(sendReservation), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
@@ -267,11 +290,11 @@ class AddReservationVC: UIViewController {
             restButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             restButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             restButton.heightAnchor.constraint(equalToConstant: 45),
-            
-            
-            
+       
         ])
     }
+  
+  
     @objc private func sendReservation() {
         guard let user = Auth.auth().currentUser else {return}
         var location = ""
@@ -279,7 +302,7 @@ class AddReservationVC: UIViewController {
             let alert = UIAlertController(title: "Something went wrong!", message: "Please make sure you completed all reservation fields.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true)
-        }else{
+        } else {
             db.collection("RestaurantProfile").whereField("userID", isEqualTo: restaurantID ?? "NA")
                 .addSnapshotListener { (querySnapshot, error) in
                     
@@ -322,18 +345,14 @@ class AddReservationVC: UIViewController {
                                 }
                             }
                             
-                            
-                            
-                            
                         }
                     }
                 }
-            
-            
         }
         
     }
     
+  
     private func isRestaurant(completion: @escaping (String) -> ()){
         guard let user = Auth.auth().currentUser else {return}
         db.collection("RestaurantProfile").whereField("userID", isEqualTo: user.uid)
@@ -350,24 +369,26 @@ class AddReservationVC: UIViewController {
                 }
             }
     }
-    
-
-    
-    
 }
 
 
-
-extension AddReservationVC: UIPickerViewDelegate, UIPickerViewDataSource {
+extension AddReservationVC: UIPickerViewDelegate,
+                            UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+  
+  
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 10
     }
+  
+  
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(row + 1) seats"
     }
+  
+  
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("row \(row + 1)")
         UserChoseSeatsNumber = "\(row + 1)"

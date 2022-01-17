@@ -16,13 +16,15 @@ class HomeVC: UIViewController {
   
   private let db = Firestore.firestore()
   private let searchBar = UISearchController()
+  
   private var restaurants : [Restaurent] = []
   private var filteredResults: [Restaurent] = []
+  
   private let storage = Storage.storage()
+  
   private var isRest = false
+  
   var locationManager = CLLocationManager()
-  
-  
   
   let profileButton: UIButton = {
       let button = UIButton(type: .system)
@@ -32,6 +34,7 @@ class HomeVC: UIViewController {
       button.translatesAutoresizingMaskIntoConstraints = false
       return button
   }()
+  
   let profileButtonForUser: UIButton = {
       let button = UIButton(type: .system)
       button.circularButton()
@@ -45,17 +48,20 @@ class HomeVC: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   
+  
   override func viewDidLoad() {
       super.viewDidLoad()
-      view.backgroundColor = .stBackground
+//      view.backgroundColor = .stBackground
       title = "Home"
-      
+    overrideUserInterfaceStyle = .light
+    
       uiSettengs()
     
     tableView.delegate = self
     tableView.dataSource = self
   }
 
+  
   override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       
@@ -80,17 +86,17 @@ class HomeVC: UIViewController {
                   self.profileButton.isHidden = true
                   self.isRest = false
                   self.profileButtonForUser.isHidden = false
-                    }
-                }
-        }
-    }
+                  }
+              }
+      }
+  }
 }
-  
   
   override func viewDidLayoutSubviews() {
       super.viewDidLayoutSubviews()
       tableView.frame = view.bounds
   }
+  
   
   private func setupLocation() {
       locationManager.delegate = self
@@ -103,8 +109,8 @@ class HomeVC: UIViewController {
       default:
           break
       }
-      
   }
+  
   
   private func isUserIsSignedIn() -> Bool {
       return Auth.auth().currentUser != nil
@@ -115,22 +121,30 @@ class HomeVC: UIViewController {
       let vc = UINavigationController(rootViewController: WelcomeVC())
       vc.modalTransitionStyle = .flipHorizontal
       vc.modalPresentationStyle = .fullScreen
-      self.present(vc, animated: true, completion: nil)
+      self.present(vc,
+                   animated: true,
+                   completion: nil)
   }
   
+  
   @objc private func goToRestProfile() {
-      self.navigationController?.pushViewController(RestaurentProfile(), animated: true)
+      self.navigationController?.pushViewController(RestaurentProfile(),
+                                                    animated: true)
    
   }
   
   
   @objc private func goToUserProfile() {
-      self.navigationController?.pushViewController(UserProfile(), animated: true)
+      self.navigationController?.pushViewController(UserProfile(),
+                                                    animated: true)
     
   }
 
+  
   private func isRestaurant(completion: @escaping (String) -> ()){
-      guard let user = Auth.auth().currentUser else {return}
+      guard let user = Auth.auth().currentUser else {
+        return
+      }
       db.collection("RestaurantProfile").whereField("userID", isEqualTo: user.uid)
           .addSnapshotListener { (querySnapshot, error) in
               
@@ -140,7 +154,7 @@ class HomeVC: UIViewController {
                  
                   if querySnapshot!.documents.isEmpty {
                       completion("no")
-                  }else{
+                  } else {
                       for document in querySnapshot!.documents{
                           let data = document.data()
                           completion(data["isRest"] as? String ?? "no")
@@ -150,16 +164,10 @@ class HomeVC: UIViewController {
           }
   }
   
+  
   func uiSettengs(){
-//      tableView.backgroundColor = .stBackground
-//      tableView.translatesAutoresizingMaskIntoConstraints = false
       tableView.register(RestCell.self, forCellReuseIdentifier: RestCell.id)
-//      tableView.rowHeight = UITableView.automaticDimension
-//      tableView.estimatedRowHeight = 400
-      
-//      view.addSubview(tableView)
-      
-      
+
       searchBar.loadViewIfNeeded()
       searchBar.searchResultsUpdater = self
       searchBar.obscuresBackgroundDuringPresentation = false
@@ -190,7 +198,6 @@ class HomeVC: UIViewController {
   }
   
   
-  
   func getData(){
       db.collection("RestaurantProfile")
           .addSnapshotListener { (querySnapshot, error) in
@@ -205,14 +212,15 @@ class HomeVC: UIViewController {
                   }
                   DispatchQueue.main.async {
                       self.tableView.reloadData()
-                      
                   }
                   
               }
           }
   }
   
-  private func readImageFromFirestore(with url: String, completion: @escaping (UIImage) -> ()){
+  
+  private func readImageFromFirestore(with url: String,
+                                      completion: @escaping (UIImage) -> ()){
       
       
       if  url != "NA"
@@ -238,16 +246,23 @@ class HomeVC: UIViewController {
   
 }
 
-extension HomeVC: UITableViewDelegate, UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+extension HomeVC: UITableViewDelegate,
+                  UITableViewDataSource {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
       if searchBar.isActive && !searchBar.searchBar.text!.isEmpty {
           return filteredResults.count
-      }else{
+      } else {
           return restaurants.count
       }
   }
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: RestCell.id, for: indexPath) as! RestCell
+  
+  
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: RestCell.id,
+                                               for: indexPath) as! RestCell
       
       
       
@@ -267,25 +282,34 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
                   cell.restImage.image = image
               }
           }
-          
-          
           return cell
       }
-      
   }
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  
+  
+  func tableView(_ tableView: UITableView,
+                 heightForRowAt indexPath: IndexPath) -> CGFloat {
       return 100
   }
   
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      tableView.deselectRow(at: indexPath, animated: true)
+  func tableView(_ tableView: UITableView,
+                 didSelectRowAt indexPath: IndexPath) {
+      tableView.deselectRow(at: indexPath,
+                            animated: true)
       
       if isRest {
-          let alert = UIAlertController(title: "Sorry", message: "Please, Log in as a customer to reserve a table.", preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-          self.present(alert, animated: true)
-      }else{
+          let alert = UIAlertController(title: "Sorry",
+                                        message: "Please, Log in as a customer to reserve a table.",
+                                        preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK",
+                                        style: .cancel,
+                                        handler: nil))
+          self.present(alert,
+                       animated: true)
+        
+      } else {
+        
           let vc = RestaurantDetailVC()
           vc.restImageURL = self.restaurants[indexPath.row].restImageURL
           vc.restDescription = self.restaurants[indexPath.row].restDescription
@@ -293,14 +317,12 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
           vc.restaurantID = self.restaurants[indexPath.row].id
           self.navigationController?.pushViewController(vc, animated: true)
       }
-      
-      
   }
-  
 }
 
 
-extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension HomeVC: UISearchResultsUpdating,
+                  UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         if !searchController.isActive {
             return
@@ -312,6 +334,8 @@ extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
             findResultsBasedOnSearch(with: userEnteredSearchText)
         }
     }
+  
+  
     private func findResultsBasedOnSearch(with text: String)  {
         filteredResults.removeAll()
         if !text.isEmpty {
@@ -319,7 +343,7 @@ extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
                 item.restName.lowercased().contains(text.lowercased())
             }
             tableView.reloadData()
-        }else{
+        } else {
             tableView.reloadData()
         }
     }
@@ -327,14 +351,14 @@ extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
 
 
 extension HomeVC: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager,
+                         didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {return}
         
         print("this is the location \(location.coordinate.latitude), long \(location.coordinate.longitude)")
         saveLocationMessage(location: location)
         locationManager.stopUpdatingLocation()
     }
-    
     
     
     private func saveLocationMessage(location: CLLocation) {
@@ -349,7 +373,5 @@ extension HomeVC: CLLocationManagerDelegate {
                 print("Document successfully written!")
             }
         }
-        
     }
-    
 }

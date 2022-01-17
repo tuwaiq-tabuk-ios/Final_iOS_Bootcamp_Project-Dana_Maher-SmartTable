@@ -11,6 +11,8 @@ import FirebaseFirestore
 
 class CreateAccountForUserVC: UIViewController {
   
+  let db = Firestore.firestore()
+  
   
   // MAKR: - IBOutlet
   @IBOutlet weak var nameTF: UITextField!
@@ -18,15 +20,13 @@ class CreateAccountForUserVC: UIViewController {
   @IBOutlet weak var passwordTF: UITextField!
   @IBOutlet weak var createAccountButton: UIButton!
   
-  let db = Firestore.firestore()
-  
   
   // view controoler lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     self.dismissKeyboard()
+    
     overrideUserInterfaceStyle = .light
-    //          navigationItem.setHidesBackButton(true, animated: true)
     navigationItem.backButtonTitle = "Back"
     
   }
@@ -131,7 +131,6 @@ class CreateAccountForUserVC: UIViewController {
           } else {
             print("Document successfully written!")
             self.transitionToHome()
-            //                        self.navigationController?.popViewController(animated: true)
           }
         }
       }
@@ -141,7 +140,7 @@ class CreateAccountForUserVC: UIViewController {
   
   func transitionToHome() {
     
-    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as! UITabBarController
+    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.K.homeViewController) as! UITabBarController
     
     view.window?.rootViewController = homeViewController
     view.window?.makeKeyAndVisible()
