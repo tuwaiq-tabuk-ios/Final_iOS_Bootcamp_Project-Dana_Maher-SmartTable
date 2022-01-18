@@ -27,6 +27,7 @@ extension UIButton {
       translatesAutoresizingMaskIntoConstraints = false
   }
 
+  //MARK: - Functions
   
   func circularButton() {
       setImage(UIImage(systemName: "gearshape")?.withTintColor(.white,

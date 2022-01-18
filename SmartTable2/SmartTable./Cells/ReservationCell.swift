@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseStorage
 
-class ResCell: UITableViewCell {
+class ReservationCell: UITableViewCell {
     
     static let id = "cell123"
     
@@ -71,6 +71,9 @@ class ResCell: UITableViewCell {
         $0.clipsToBounds = true
         return $0
     }(UILabel())
+  
+  
+  
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -80,10 +83,12 @@ class ResCell: UITableViewCell {
   
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+      backgroundColor = UIColor(named: "Secondary Brand Fill Color")
         setupView()
     }
     
-  
+  //MARK: - Methode
+
     private func setupView() {
         self.clipsToBounds = true
         

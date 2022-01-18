@@ -2,7 +2,7 @@
 //  STColors.swift
 //  SmartTabel
 //
-//  Created by Faisal on 04/01/2022.
+//  Created by macbook air on 04/01/2022.
 //
 
 

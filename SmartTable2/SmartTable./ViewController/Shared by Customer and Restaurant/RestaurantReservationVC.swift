@@ -9,26 +9,34 @@ import UIKit
 import Firebase
 import CoreLocation
 import MapKit
+
+
 class RestaurantReservationVC: UIViewController {
     
+  //MARK: - Properties
+
     private let db = Firestore.firestore()
     private let searchBar = UISearchController()
   
     private var reservations : [Reservations] = []
     private var filteredResults: [Reservations] = []
+      
+  //MAKR: - IBOutlet
+
+  @IBOutlet weak var tableView: UITableView!
   
-    private let tableView = UITableView(frame: .zero, style: .insetGrouped)
-    
-    
+  //MARK: - View Controller Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-      overrideUserInterfaceStyle = .light
-      
+            
         view.backgroundColor = .stBackground
-        title = "Reservations"
+      
         uiSettengs()
         getData()
+      
+      tableView.delegate = self
+      tableView.dataSource = self
     }
     
   
@@ -37,19 +45,13 @@ class RestaurantReservationVC: UIViewController {
         tableView.frame = view.bounds
     }
     
-    
+  //MARK: - Functions
+
     func uiSettengs(){
-        tableView.backgroundColor = .stBackground
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ResCell.self,
-                           forCellReuseIdentifier: ResCell.id)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 400
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
-        
-        
+        tableView.register(ReservationCell.self,
+                           forCellReuseIdentifier: ReservationCell.id)
+
+      
         searchBar.loadViewIfNeeded()
         searchBar.searchResultsUpdater = self
         searchBar.obscuresBackgroundDuringPresentation = false
@@ -64,7 +66,8 @@ class RestaurantReservationVC: UIViewController {
         searchBar.searchBar.delegate = self
     }
     
-    
+  //MARK: - Methode
+
     private func isRestaurant(completion: @escaping (String) -> ()){
         guard let user = Auth.auth().currentUser else {return}
         db.collection("RestaurantProfile").whereField("userID", isEqualTo: user.uid)
@@ -86,7 +89,8 @@ class RestaurantReservationVC: UIViewController {
             }
     }
     
-  
+  //MARK: - Functions
+
     func getData(){
         guard let user = Auth.auth().currentUser else {return}
         
@@ -132,6 +136,7 @@ class RestaurantReservationVC: UIViewController {
     }
 }
 
+//MARK: - UITableView
 
 extension RestaurantReservationVC: UITableViewDelegate,
                                    UITableViewDataSource {
@@ -147,7 +152,7 @@ extension RestaurantReservationVC: UITableViewDelegate,
   
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ResCell.id, for: indexPath) as! ResCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReservationCell.id, for: indexPath) as! ReservationCell
   
         if searchBar.isActive && !searchBar.searchBar.text!.isEmpty {
             
@@ -212,6 +217,7 @@ extension RestaurantReservationVC: UITableViewDelegate,
     }
 }
 
+//MARK: - UISearch
 
 extension RestaurantReservationVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
@@ -225,7 +231,8 @@ extension RestaurantReservationVC: UISearchResultsUpdating, UISearchBarDelegate 
         }
     }
   
-  
+  //MARK: - Methode
+
     private func findResultsBasedOnSearch(with text: String)  {
         filteredResults.removeAll()
         if !text.isEmpty {

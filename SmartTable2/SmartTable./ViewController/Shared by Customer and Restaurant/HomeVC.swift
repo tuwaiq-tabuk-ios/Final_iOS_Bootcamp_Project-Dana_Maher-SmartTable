@@ -14,6 +14,8 @@ import CoreLocation
 
 class HomeVC: UIViewController {
   
+  //MARK: - Properties
+
   private let db = Firestore.firestore()
   private let searchBar = UISearchController()
   
@@ -44,17 +46,15 @@ class HomeVC: UIViewController {
       return button
   }()
   
-  
+  // MAKR: - IBOutlet
   
   @IBOutlet weak var tableView: UITableView!
   
-  
+  //MARK: - View Controller Life Cycle
+
   override func viewDidLoad() {
       super.viewDidLoad()
-//      view.backgroundColor = .stBackground
-      title = "Home"
-    overrideUserInterfaceStyle = .light
-    
+
       uiSettengs()
     
     tableView.delegate = self
@@ -97,7 +97,8 @@ class HomeVC: UIViewController {
       tableView.frame = view.bounds
   }
   
-  
+  //MARK: - Methode
+
   private func setupLocation() {
       locationManager.delegate = self
       locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -140,7 +141,8 @@ class HomeVC: UIViewController {
     
   }
 
-  
+  //MARK: - Methode
+
   private func isRestaurant(completion: @escaping (String) -> ()){
       guard let user = Auth.auth().currentUser else {
         return
@@ -164,9 +166,10 @@ class HomeVC: UIViewController {
           }
   }
   
+  //MARK: - Functions
   
   func uiSettengs(){
-      tableView.register(RestCell.self, forCellReuseIdentifier: RestCell.id)
+      tableView.register(ReservationCell.self, forCellReuseIdentifier: RestaurantCell.id)
 
       searchBar.loadViewIfNeeded()
       searchBar.searchResultsUpdater = self
@@ -218,7 +221,8 @@ class HomeVC: UIViewController {
           }
   }
   
-  
+  //MARK: - Methode
+
   private func readImageFromFirestore(with url: String,
                                       completion: @escaping (UIImage) -> ()){
       
@@ -246,9 +250,12 @@ class HomeVC: UIViewController {
   
 }
 
+//MARK: - UITableView
 
 extension HomeVC: UITableViewDelegate,
                   UITableViewDataSource {
+  
+  
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
       if searchBar.isActive && !searchBar.searchBar.text!.isEmpty {
@@ -261,8 +268,8 @@ extension HomeVC: UITableViewDelegate,
   
   func tableView(_ tableView: UITableView,
                  cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: RestCell.id,
-                                               for: indexPath) as! RestCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantCell.id,
+                                               for: indexPath) as! RestaurantCell
       
       
       
@@ -293,6 +300,8 @@ extension HomeVC: UITableViewDelegate,
   }
   
   
+  
+  
   func tableView(_ tableView: UITableView,
                  didSelectRowAt indexPath: IndexPath) {
       tableView.deselectRow(at: indexPath,
@@ -320,6 +329,7 @@ extension HomeVC: UITableViewDelegate,
   }
 }
 
+//MARK: - UISearch
 
 extension HomeVC: UISearchResultsUpdating,
                   UISearchBarDelegate {
@@ -335,7 +345,8 @@ extension HomeVC: UISearchResultsUpdating,
         }
     }
   
-  
+  //MARK: - Methode
+
     private func findResultsBasedOnSearch(with text: String)  {
         filteredResults.removeAll()
         if !text.isEmpty {
@@ -349,6 +360,7 @@ extension HomeVC: UISearchResultsUpdating,
     }
 }
 
+//MARK: - CLLocationManager
 
 extension HomeVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
@@ -360,7 +372,8 @@ extension HomeVC: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    
+  //MARK: - Methode
+
     private func saveLocationMessage(location: CLLocation) {
        guard let userId = Auth.auth().currentUser?.uid else {return}
         

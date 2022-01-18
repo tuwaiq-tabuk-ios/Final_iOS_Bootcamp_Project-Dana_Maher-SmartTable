@@ -17,12 +17,11 @@ class restaurantWelcomeScreen: UIViewController {
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
 
-  // view controoler lifecycle
+  //MARK: - View Controller Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
       self.dismissKeyboard()
-      overrideUserInterfaceStyle = .light
       navigationItem.backButtonTitle = "Back"
       
     }
@@ -36,6 +35,7 @@ class restaurantWelcomeScreen: UIViewController {
         }
     }
     
+  //MARK: - Methode
 
     private func isUserSignedIn() -> Bool {
       return Auth.auth().currentUser != nil

@@ -1,6 +1,6 @@
 //
 //  WelcomeVC.swift
-//  Twitterrr
+//  SmartTabel
 //
 //  Created by macbook air on 09/05/1443 AH.
 //
@@ -11,16 +11,17 @@ import FirebaseAuth
 class WelcomeVC: UIViewController {
 
   // MAKR: - IBOutlet
+  
   @IBOutlet weak var signUpButton: UIButton!
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var restaurantButton: UIButton!
   
   
-  // view controoler lifecycle
+  //MARK: - View Controller Life Cycle
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       self.dismissKeyboard()
-      overrideUserInterfaceStyle = .light
     }
 
   
@@ -31,7 +32,8 @@ class WelcomeVC: UIViewController {
         }
     }
   
-  
+  //MARK: - Methode
+
     private func isUserSignedIn() -> Bool {
       return Auth.auth().currentUser != nil
     }

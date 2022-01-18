@@ -8,14 +8,13 @@
 import UIKit
 import FirebaseStorage
 
-class RestCell: UITableViewCell {
+class RestaurantCell: UITableViewCell {
     
   static let id = "cell"
   
   lazy var restImage: UIImageView = {
       $0.contentMode = .scaleAspectFill
       $0.layer.cornerRadius = 10
-
       $0.clipsToBounds = true
       return $0
   }(UIImageView())
@@ -37,6 +36,7 @@ class RestCell: UITableViewCell {
   }(UILabel())
   
   
+  
   required init?(coder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
 
@@ -45,10 +45,13 @@ class RestCell: UITableViewCell {
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
       super.init(style: style, reuseIdentifier: reuseIdentifier)
+    backgroundColor = UIColor(named: "Secondary Brand Fill Color")
+
       setupView()
   }
   
-  
+  //MARK: - Methode
+
   private func setupView() {
       self.clipsToBounds = true
       restImage.translatesAutoresizingMaskIntoConstraints = false

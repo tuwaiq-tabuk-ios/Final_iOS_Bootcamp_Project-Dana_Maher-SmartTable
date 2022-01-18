@@ -1,6 +1,6 @@
 //
 //  UIView.swift
-//  My App
+//  SmartTabel
 //
 //  Created by macbook air on 23/05/1443 AH.
 //

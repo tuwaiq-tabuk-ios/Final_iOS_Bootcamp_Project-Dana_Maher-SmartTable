@@ -1,12 +1,16 @@
 //
+// CMTexField.swift
+//  SmartTabel
 //
-
+//  Created by macbook air on 05/01/2022.
+//
  import UIKit
 
 @IBDesignable
 final  class CMTexField: UITextField {
   
-  
+  //MARK: - Properties
+
   var padding = UIEdgeInsets(top: 0, left: 10 , bottom: 0, right: 5)
 
     // Provides left padding for images
@@ -76,7 +80,8 @@ final  class CMTexField: UITextField {
         }
     }
  
-    
+  //MARK: - Functions
+
     func setEyeView(){
         
         if isPasswordTF {
@@ -117,7 +122,8 @@ final  class CMTexField: UITextField {
                 }
             }
  
-    
+  //MARK: - Functions
+
     func updateView() {
         if let image = leftImage {
             leftViewMode = UITextField.ViewMode.always

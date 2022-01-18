@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class AddReservationVC: UIViewController {
     
+  //MARK: - Properties
+
     private let db = Firestore.firestore()
   
     private let numberOfSeatsPicker = UIPickerView()
@@ -120,12 +122,11 @@ class AddReservationVC: UIViewController {
         return btn
     }()
     
+  //MARK: - View Controller Life Cycle
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-      overrideUserInterfaceStyle = .light
-      
+              
         view.backgroundColor = .stBackground
         setupPresenetationMode()
         setupView()
@@ -159,7 +160,8 @@ class AddReservationVC: UIViewController {
         }
     }
   
-  
+  //MARK: - Methode
+
     private func setupPresenetationMode() {
         if let presentationController = presentationController as? UISheetPresentationController {
             presentationController.detents = [
@@ -174,12 +176,7 @@ class AddReservationVC: UIViewController {
     private func setupDatePicker() {
         datePicker.calendar = .current
         datePicker.datePickerMode = .date
-        
-        
-        //        if #available(iOS 13.4, *) {
-        //            datePicker.preferredDatePickerStyle = .wheels
-        //        }
-        
+       
         datePicker.addTarget(self,
                              action: #selector(datePickerChanged(_:)),
                              for: .valueChanged)
@@ -196,7 +193,8 @@ class AddReservationVC: UIViewController {
         UserChoseDate = dateFormatter.string(from: sender.date)
     }
     
-  
+  //MARK: - Methode
+
     private func fetchCurrentUsers() {
         guard let currentUserName = FirebaseAuth.Auth.auth().currentUser else {return}
         db.collection("UserProfile").whereField("email",
@@ -224,7 +222,7 @@ class AddReservationVC: UIViewController {
             }
     }
     
-  
+
     private func setupView() {
         
         numberOfSeatsPicker.translatesAutoresizingMaskIntoConstraints = false
@@ -352,7 +350,8 @@ class AddReservationVC: UIViewController {
         
     }
     
-  
+  //MARK: - Methode
+
     private func isRestaurant(completion: @escaping (String) -> ()){
         guard let user = Auth.auth().currentUser else {return}
         db.collection("RestaurantProfile").whereField("userID", isEqualTo: user.uid)
@@ -371,6 +370,7 @@ class AddReservationVC: UIViewController {
     }
 }
 
+//MARK: - UIPickerView
 
 extension AddReservationVC: UIPickerViewDelegate,
                             UIPickerViewDataSource {

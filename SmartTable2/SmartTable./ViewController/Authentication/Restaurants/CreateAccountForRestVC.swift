@@ -11,9 +11,12 @@ import FirebaseFirestore
 
 class CreateAccountForRestVC: UIViewController {
   
+  //MARK: - Properties
+
   let db = Firestore.firestore()
   
-  // MAKR: - IBOutlet
+  //MAKR: - IBOutlet
+  
   @IBOutlet weak var nameTF: UITextField!
   @IBOutlet weak var emailTF: UITextField!
   @IBOutlet weak var passwordTF: UITextField!
@@ -21,27 +24,30 @@ class CreateAccountForRestVC: UIViewController {
   @IBOutlet weak var passwordCorrectTF: CMTexField!
   
   
-  // view controoler lifecycle
+  //MARK: - View Controller Life Cycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.dismissKeyboard()
-    overrideUserInterfaceStyle = .light
+    
     navigationItem.backButtonTitle = "Back"
     
-    createAccountButton.addTarget(self, action: #selector(createAccountButtonTapped), for: .touchUpInside)
+    createAccountButton.addTarget(self, action: #selector(createAccountButtonPressed), for: .touchUpInside)
     
     nameTF.delegate = self
     emailTF.delegate = self
     passwordTF.delegate = self
+    passwordCorrectTF.delegate = self
   }
   
-  
+  //MARK: - IBActions
+
   @IBAction func createAccount(_ sender: UIButton) {
-    createAccountButtonTapped()
+    createAccountButtonPressed()
   }
 
   
-  @objc private func createAccountButtonTapped() {
+  @objc private func createAccountButtonPressed() {
       guard let email = emailTF.text else {return}
       guard let password = passwordTF.text else {return}
       guard let name = nameTF.text else {return}
@@ -58,7 +64,8 @@ class CreateAccountForRestVC: UIViewController {
       
   }
 
-  
+  //MARK: - Methode
+
   private func signupUserUsing(email: String, password: String, name: String) {
       Auth.auth().createUser(withEmail: email, password: password) { results, error in
           
@@ -110,7 +117,8 @@ class CreateAccountForRestVC: UIViewController {
       }
   }
   
-  
+  //MARK: - Localizable
+
   func transitionToHome() {
     
     let homeViewController = storyboard?.instantiateViewController(identifier: Constants.K.homeViewController) as! UITabBarController
@@ -123,6 +131,7 @@ class CreateAccountForRestVC: UIViewController {
   }
 }
 
+//MARK: - UITextField
 
 extension CreateAccountForRestVC: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -130,6 +139,7 @@ extension CreateAccountForRestVC: UITextFieldDelegate {
       nameTF.resignFirstResponder()
       passwordTF.resignFirstResponder()
       emailTF.resignFirstResponder()
+    passwordCorrectTF.resignFirstResponder()
       return true
   }
 }

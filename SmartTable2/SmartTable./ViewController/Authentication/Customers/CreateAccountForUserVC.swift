@@ -1,6 +1,6 @@
 //
 //  CreateAccountVC.swift
-//  Twitterrr
+//  SmartTabel
 //
 //  Created by macbook air on 09/05/1443 AH.
 //
@@ -11,33 +11,37 @@ import FirebaseFirestore
 
 class CreateAccountForUserVC: UIViewController {
   
+  //MARK: - Properties
+
   let db = Firestore.firestore()
   
+  //MAKR: - IBOutlet
   
-  // MAKR: - IBOutlet
   @IBOutlet weak var nameTF: UITextField!
   @IBOutlet weak var emailTF: UITextField!
   @IBOutlet weak var passwordTF: UITextField!
   @IBOutlet weak var createAccountButton: UIButton!
   
+
+//MARK: - View controller Life Cycle
   
-  // view controoler lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     self.dismissKeyboard()
     
-    overrideUserInterfaceStyle = .light
     navigationItem.backButtonTitle = "Back"
     
   }
   
   
+  //MARK: - IBActions
+  
   @IBAction func createUser(_ sender: UIButton) {
-    createAccountButtonTapped()
+    createAccountButtonPressed()
   }
   
-  
-  @objc private func createAccountButtonTapped() {
+   
+  @objc private func createAccountButtonPressed() {
     guard let email = emailTF.text else { return }
     guard let password = passwordTF.text else { return }
     guard let name = nameTF.text else { return }
@@ -59,7 +63,8 @@ class CreateAccountForUserVC: UIViewController {
     }
   }
   
-  
+  //MARK: - Methode
+
   private func signupUserUsing(email: String,
                                password: String,
                                name: String) {
@@ -137,6 +142,7 @@ class CreateAccountForUserVC: UIViewController {
     }
   }
   
+  //MARK: - Localizable
   
   func transitionToHome() {
     
@@ -150,6 +156,7 @@ class CreateAccountForUserVC: UIViewController {
   }
 }
 
+//MARK: - UITextField
 
 extension CreateAccountForUserVC: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
