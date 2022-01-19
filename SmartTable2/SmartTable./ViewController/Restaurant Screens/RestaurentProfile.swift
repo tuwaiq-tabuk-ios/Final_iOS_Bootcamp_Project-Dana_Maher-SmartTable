@@ -12,13 +12,17 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class RestaurentProfile: UIViewController {
+  
+  //MARK: - Properties
+
     let db = Firestore.firestore()
+  
     let imagePicker = UIImagePickerController()
     let storage = Storage.storage()
     
     let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+      view.backgroundColor = UIColor(named: "Secondary Brand Fill Color")
         view.layer.cornerRadius = 13
         view.layer.cornerCurve = .continuous
         view.clipsToBounds = true
@@ -69,45 +73,40 @@ class RestaurentProfile: UIViewController {
         return button
     }()
     
-    
+  //MARK: - View Controller Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .stBackground
         title = "Restaurent Profile"
-      
+      view.backgroundColor = UIColor(named: "Secondary Brand Fill Color")
+
         readImageFromFirestore()
         setUpLabels()
-        
-        
-        
     }
+  
+  
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchCurrentUsers()
     }
-    
-    
-    
-    
-    
+
+  //MARK: - Functions
+
     func setUpLabels() {
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(containerView)
         
-        containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive                                = true
-        containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive                                = true
-        containerView.widthAnchor.constraint(equalToConstant: 325).isActive                                         = true
-        containerView.heightAnchor.constraint(equalToConstant: 405).isActive                                        = true
-        
-
-        
+        containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        containerView.widthAnchor.constraint(equalToConstant: 325).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 405).isActive = true
         
         profileImage.tintColor  = .stBackground
         profileImage.isUserInteractionEnabled = true
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imagePressed))
         profileImage.addGestureRecognizer(tapRecognizer)
         
         containerView.addSubview(profileImage)
@@ -123,10 +122,7 @@ class RestaurentProfile: UIViewController {
         userNameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20).isActive = true
         userNameLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
-        
-        
         containerView.addSubview(signOutButton)
-        
         
         userDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(userDescriptionLabel)
@@ -140,7 +136,7 @@ class RestaurentProfile: UIViewController {
         signOutButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
         signOutButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
         signOutButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        signOutButton.addTarget(self, action: #selector(signOutButtonTapped), for: .touchUpInside)
+        signOutButton.addTarget(self, action: #selector(signOutButtonPressed), for: .touchUpInside)
         
         containerView.addSubview(addDescriptionButton)
         addDescriptionButton.topAnchor.constraint(equalTo: signOutButton.bottomAnchor, constant: 5).isActive = true
@@ -148,10 +144,11 @@ class RestaurentProfile: UIViewController {
         addDescriptionButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
         addDescriptionButton.widthAnchor.constraint(equalToConstant: 145).isActive = true
         
-        addDescriptionButton.addTarget(self, action: #selector(addDescriptionButtonTapped), for: .touchUpInside)
+        addDescriptionButton.addTarget(self, action: #selector(addDescriptionButtonPressed), for: .touchUpInside)
     }
     
-    @objc func signOutButtonTapped() {
+  
+    @objc func signOutButtonPressed() {
       do {
                 try Auth.auth().signOut()
                 if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeVC") as? UINavigationController {
@@ -165,11 +162,20 @@ class RestaurentProfile: UIViewController {
         
     }
 
-    @objc func addDescriptionButtonTapped() {
+  
+    @objc func addDescriptionButtonPressed() {
         let sheetViewController = AddDescriptionVC(nibName: nil, bundle: nil)
         self.present(sheetViewController, animated: true, completion: nil)
     }
     
+  
+  @objc func imagePressed() {
+      print("Image tapped")
+      setupImagePicker()
+  }
+  
+  //MARK: - Functions
+
     func setupImagePicker() {
         
         imagePicker.delegate = self
@@ -177,11 +183,8 @@ class RestaurentProfile: UIViewController {
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true)
     }
-    @objc func imageTapped() {
-        print("Image tapped")
-        setupImagePicker()
-    }
-    
+  
+  
     func saveImageToFirestore(url: String, userId: String) {
         
         db.collection("RestaurantProfile").document(userId).setData([
@@ -195,6 +198,8 @@ class RestaurentProfile: UIViewController {
         }
     }
     
+  //MARK: - Methode
+
     private func readImageFromFirestore(){
         guard let currentUser = Auth.auth().currentUser else {return}
         
@@ -244,6 +249,7 @@ class RestaurentProfile: UIViewController {
             }
     }
     
+  
     private func fetchCurrentUsers() {
         guard let currentUser = FirebaseAuth.Auth.auth().currentUser else {return}
         db.collection("RestaurantProfile").whereField("userID", isEqualTo: currentUser.uid)
@@ -274,10 +280,9 @@ class RestaurentProfile: UIViewController {
     
 }
 
-
+//MARK: - UIImagePickerController, UINavigationController
 
 extension RestaurentProfile: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -300,16 +305,13 @@ extension RestaurentProfile: UIImagePickerControllerDelegate, UINavigationContro
                     self.saveImageToFirestore(url: "\(url!)", userId: currentUser.uid)
                     
                 })
-            }else{
+            } else {
                 print("error \(String(describing: error))")
             }
         }
-        
         picker.dismiss(animated: true, completion: nil)
     }
-    
-    
-    
+  
 }
 
 

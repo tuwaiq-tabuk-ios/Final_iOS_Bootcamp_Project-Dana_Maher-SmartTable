@@ -16,25 +16,12 @@ class restaurantWelcomeScreen: UIViewController {
   
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
-  
-  
 
-//    let illustrationImage: UIImageView = {
-//        let image = UIImageView()
-//        image.image = UIImage(named: "bg")
-//        image.contentMode = .scaleAspectFit
-//        image.clipsToBounds = true
-//        image.translatesAutoresizingMaskIntoConstraints = false
-//        return image
-//    }()
-  
-  // view controoler lifecycle
+  //MARK: - View Controller Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
       self.dismissKeyboard()
-      overrideUserInterfaceStyle = .light
-//          navigationItem.setHidesBackButton(true, animated: true)
       navigationItem.backButtonTitle = "Back"
       
     }
@@ -48,6 +35,7 @@ class restaurantWelcomeScreen: UIViewController {
         }
     }
     
+  //MARK: - Methode
 
     private func isUserSignedIn() -> Bool {
       return Auth.auth().currentUser != nil

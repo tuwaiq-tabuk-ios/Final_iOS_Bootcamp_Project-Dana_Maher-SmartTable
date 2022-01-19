@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class AddDescriptionVC: UIViewController {
   
+  //MARK: - Properties
+
     let db = Firestore.firestore()
     
     let limitLabel: UILabel = {
@@ -36,12 +38,11 @@ class AddDescriptionVC: UIViewController {
         return btn
     }()
     
-  // view controoler lifecycle
+  //MARK: - View Controller Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
       self.dismissKeyboard()
-      overrideUserInterfaceStyle = .light
           navigationItem.setHidesBackButton(true,
                                             animated: true)
   
@@ -50,7 +51,8 @@ class AddDescriptionVC: UIViewController {
         setupView()
     }
 
-  
+  //MARK: - Methode
+
     private func setupPresenetationMode() {
         if let presentationController = presentationController as? UISheetPresentationController {
             presentationController.detents = [
@@ -124,6 +126,7 @@ class AddDescriptionVC: UIViewController {
     
 }
 
+//MARK: - UITextView
 
 extension AddDescriptionVC: UITextViewDelegate {
     func textView(_ textView: UITextView,
