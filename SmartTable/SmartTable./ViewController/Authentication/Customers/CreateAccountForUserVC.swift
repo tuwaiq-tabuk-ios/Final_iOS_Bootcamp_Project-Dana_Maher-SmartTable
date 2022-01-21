@@ -19,6 +19,7 @@ class CreateAccountForUserVC: UIViewController {
   @IBOutlet weak var nameTF: UITextField!
   @IBOutlet weak var emailTF: UITextField!
   @IBOutlet weak var passwordTF: UITextField!
+  @IBOutlet weak var confirmPasswordTF: UITextField!
   @IBOutlet weak var createAccountButton: UIButton!
   
   //MARK: - View Controller Life Cycle
@@ -41,13 +42,23 @@ class CreateAccountForUserVC: UIViewController {
     guard let email = emailTF.text else { return }
     guard let password = passwordTF.text else { return }
     guard let name = nameTF.text else { return }
+    guard let confirmPassword = confirmPasswordTF.text else { return }
     
     print("DEBUG: name: \(name)")
     
     if !email.isEmpty && !password.isEmpty && !name.isEmpty {
-      signupUserUsing(email: email,
-                      password: password,
-                      name: name)
+      if passwordTF.text == confirmPasswordTF.text {
+        signupUserUsing(email: email,
+                        password: password,
+                        name: name, confirmPassword: confirmPassword)      } else {
+        
+        let alert = UIAlertController(title: "Oops!", message: "The password is not available", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        present(alert, animated: true)
+        
+      }
     } else {
       let alert = UIAlertController(title: "Oops!",
                                     message: "please make sure name, email and password are not empty.",
@@ -59,16 +70,17 @@ class CreateAccountForUserVC: UIViewController {
       present(alert,
               animated: true)
     }
+    
   }
   
   //MARK: - Methode
   
   private func signupUserUsing(email: String,
                                password: String,
-                               name: String) {
+                               name: String,confirmPassword: String) {
     FSUserManager.shared.signUpUserWith(email: email,
                                         password: password,
-                                        name: name) { error in
+                                        name: name, confirmPassword: confirmPassword) { error in
    
       print("DEBUG: \(#function) - error: \(String(describing: error))")
       
@@ -111,6 +123,7 @@ extension CreateAccountForUserVC: UITextFieldDelegate {
     nameTF.resignFirstResponder()
     passwordTF.resignFirstResponder()
     emailTF.resignFirstResponder()
+    confirmPasswordTF.resignFirstResponder()
     return true
   }
 }
