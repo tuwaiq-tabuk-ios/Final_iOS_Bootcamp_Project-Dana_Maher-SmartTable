@@ -45,6 +45,10 @@ class AddDescriptionVC: UIViewController {
       self.dismissKeyboard()
           navigationItem.setHidesBackButton(true,
                                             animated: true)
+      
+      view.backgroundColor = UIColor(named: "Secondary Brand Fill Color")
+      
+      
         setupPresenetationMode()
         setupView()
     }

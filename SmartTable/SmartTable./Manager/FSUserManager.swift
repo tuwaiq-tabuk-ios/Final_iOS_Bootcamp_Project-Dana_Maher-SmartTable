@@ -16,12 +16,13 @@ class FSUserManager {
   
   private init() {}
   
-  //MARK: - Functions
+  //MARK: - Register
 
   func signUpUserWith(
     email: String,
     password: String,
     name: String,
+    confirmPassword: String,
     completion: @escaping (_ error: Error?) -> Void
   ) {
    
