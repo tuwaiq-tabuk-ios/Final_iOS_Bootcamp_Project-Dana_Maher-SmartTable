@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>825193271891-cuk5ingm6g2i7vivu9usorv2ijqsjug4.apps.googleusercontent.com</string>
+	<string>190082324708-0ua4q8ot0mu7o9et0baaov33dudgn2g6.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.825193271891-cuk5ingm6g2i7vivu9usorv2ijqsjug4</string>
+	<string>com.googleusercontent.apps.190082324708-0ua4q8ot0mu7o9et0baaov33dudgn2g6</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA31oI8i1FbhNDMD08685Yqy5HrZRB2BMI</string>
+	<string>AIzaSyCXdCxmVCZzYrC3zgfPRq0dsm498yAztgw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>825193271891</string>
+	<string>190082324708</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.danah.SmartTable-</string>
+	<string>com.danah.SmartTable</string>
 	<key>PROJECT_ID</key>
-	<string>smarttable-6eed6</string>
+	<string>smarttable-16dba</string>
 	<key>STORAGE_BUCKET</key>
-	<string>smarttable-6eed6.appspot.com</string>
+	<string>smarttable-16dba.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:825193271891:ios:a468764eabfaa947eb6ca6</string>
+	<string>1:190082324708:ios:06c8dd477f836eaea0b4f1</string>
 </dict>
 </plist>

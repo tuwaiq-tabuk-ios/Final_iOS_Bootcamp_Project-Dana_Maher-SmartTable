@@ -57,20 +57,33 @@ class RestCell: UITableViewCell {
       restImage.translatesAutoresizingMaskIntoConstraints = false
       restName.translatesAutoresizingMaskIntoConstraints = false
       restEmail.translatesAutoresizingMaskIntoConstraints = false
+    
       contentView.addSubview(restImage)
       contentView.addSubview(restName)
       contentView.addSubview(restEmail)
+    
       NSLayoutConstraint.activate([
-          restImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-          restImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-          restImage.heightAnchor.constraint(equalToConstant: 65),
-          restImage.widthAnchor.constraint(equalToConstant: 65),
-          restName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-          restName.leadingAnchor.constraint(equalTo: restImage.trailingAnchor, constant: 10),
-          restName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-          restEmail.topAnchor.constraint(equalTo: restName.bottomAnchor, constant: 10),
-          restEmail.leadingAnchor.constraint(equalTo: restImage.trailingAnchor, constant: 10),
-          restEmail.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+          restImage.topAnchor
+            .constraint(equalTo: contentView.topAnchor, constant: 16),
+          restImage.leadingAnchor
+            .constraint(equalTo: contentView.leadingAnchor, constant: 16),
+          restImage.heightAnchor
+            .constraint(equalToConstant: 65),
+          restImage.widthAnchor
+            .constraint(equalToConstant: 65),restName.topAnchor
+          
+            .constraint(equalTo: contentView.topAnchor, constant: 20),
+          restName.leadingAnchor
+            .constraint(equalTo: restImage.trailingAnchor, constant: 10),
+          restName.trailingAnchor
+            .constraint(equalTo: contentView.trailingAnchor, constant: -16),
+          
+          restEmail.topAnchor
+            .constraint(equalTo: restName.bottomAnchor, constant: 10),
+          restEmail.leadingAnchor
+            .constraint(equalTo: restImage.trailingAnchor, constant: 10),
+          restEmail.trailingAnchor
+            .constraint(equalTo: contentView.trailingAnchor, constant: -16),
       ])
   }  
 }

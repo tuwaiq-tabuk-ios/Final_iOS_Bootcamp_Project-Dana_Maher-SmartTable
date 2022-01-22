@@ -14,6 +14,7 @@ enum FSCollectionReference: String {
 
 //MARK: - Functions
 
+
 func getFSCollectionReference(collectionReference: FSCollectionReference) -> CollectionReference {
   Firestore.firestore().collection(collectionReference.rawValue)
 }

@@ -88,9 +88,17 @@ class AddReservationVC: UIViewController {
     private let signleOrFamilySwitch: UISwitch = {
         let switchbtn = UISwitch()
         switchbtn.tintColor = .systemGray6
-        switchbtn.thumbTintColor = UIColor(#colorLiteral(red: 0, green: 0.8117647059, blue: 0.9921568627, alpha: 1))
-        switchbtn.onTintColor = UIColor(#colorLiteral(red: 0, green: 0.8117647059, blue: 0.9921568627, alpha: 0.25))
-        switchbtn.addTarget(self, action: #selector(switchForsignleOrFamilyDidChange(_:)), for: .valueChanged)
+        switchbtn.thumbTintColor = UIColor(#colorLiteral(red: 0,
+                                                         green: 0.8117647059,
+                                                         blue: 0.9921568627,
+                                                         alpha: 1))
+        switchbtn.onTintColor = UIColor(#colorLiteral(red: 0,
+                                                      green: 0.8117647059,
+                                                      blue: 0.9921568627,
+                                                      alpha: 0.25))
+        switchbtn.addTarget(self,
+                            action: #selector(switchForsignleOrFamilyDidChange(_:)),
+                            for: .valueChanged)
         switchbtn.translatesAutoresizingMaskIntoConstraints = false
         return switchbtn
     }()
@@ -112,6 +120,8 @@ class AddReservationVC: UIViewController {
         fetchCurrentUsers()
         numberOfSeatsPicker.dataSource = self
         numberOfSeatsPicker.delegate = self
+      
+      view.backgroundColor = UIColor(named: "Secondary Brand Fill Color")
     }
     
   
@@ -155,8 +165,9 @@ class AddReservationVC: UIViewController {
         datePicker.calendar = .current
         datePicker.datePickerMode = .date
         
-        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
-        
+        datePicker.addTarget(self,
+                             action: #selector(datePickerChanged(_:)),
+                             for: .valueChanged)
     }
   
   
@@ -173,7 +184,8 @@ class AddReservationVC: UIViewController {
 
     private func fetchCurrentUsers() {
         guard let currentUserName = FirebaseAuth.Auth.auth().currentUser else {return}
-        db.collection("UserProfile").whereField("email", isEqualTo: String(currentUserName.email!))
+        db.collection("UserProfile").whereField("email",
+                                                isEqualTo: String(currentUserName.email!))
             .addSnapshotListener { (querySnapshot, error) in
                 
                 if let e = error {
@@ -207,6 +219,7 @@ class AddReservationVC: UIViewController {
         
         numberOfSeatsPicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.translatesAutoresizingMaskIntoConstraints = false
+      
         view.addSubview(titleLabel)
         view.addSubview(numberOfSeatsPicker)
         view.addSubview(restButton)
@@ -218,57 +231,91 @@ class AddReservationVC: UIViewController {
         view.addSubview(inOrOutsideSwitch)
         view.addSubview(datePicker)
  
-        restButton.addTarget(self, action: #selector(sendReservation), for: .touchUpInside)
+        restButton.addTarget(self,
+                             action: #selector(sendReservation),
+                             for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            titleLabel.topAnchor
+              .constraint(equalTo: view.topAnchor, constant: 20),
+            titleLabel.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            userNameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
-            userNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            userNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            userNameLabel.heightAnchor.constraint(equalToConstant: 45),
-            
-            
-            userEmailLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 15),
-            userEmailLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            userEmailLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            userEmailLabel.heightAnchor.constraint(equalToConstant: 45),
-            
-            signleOrFamilyLabel.topAnchor.constraint(equalTo: userEmailLabel.bottomAnchor, constant: 15),
-            signleOrFamilyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            signleOrFamilyLabel.heightAnchor.constraint(equalToConstant: 45),
+            userNameLabel.topAnchor
+              .constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
+            userNameLabel.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor, constant: 20),
+            userNameLabel.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor, constant: -20),
+            userNameLabel.heightAnchor
+              .constraint(equalToConstant: 45),
             
             
+            userEmailLabel.topAnchor
+              .constraint(equalTo: userNameLabel.bottomAnchor, constant: 15),
+            userEmailLabel.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor, constant: 20),
+            userEmailLabel.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor, constant: -20),
+            userEmailLabel.heightAnchor
+              .constraint(equalToConstant: 45),
             
-            signleOrFamilySwitch.topAnchor.constraint(equalTo: userEmailLabel.bottomAnchor, constant: 15),
-            signleOrFamilySwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            signleOrFamilySwitch.heightAnchor.constraint(equalToConstant: 45),
-            
-            inOrOutsideLabel.topAnchor.constraint(equalTo: signleOrFamilyLabel.bottomAnchor, constant: 15),
-            inOrOutsideLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            inOrOutsideLabel.heightAnchor.constraint(equalToConstant: 45),
-            
-            inOrOutsideSwitch.topAnchor.constraint(equalTo: signleOrFamilyLabel.bottomAnchor, constant: 15),
-            inOrOutsideSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            inOrOutsideSwitch.heightAnchor.constraint(equalToConstant: 45),
-            
-            numberOfSeatsPicker.topAnchor.constraint(equalTo: inOrOutsideSwitch.bottomAnchor, constant: 35),
-            numberOfSeatsPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            numberOfSeatsPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            numberOfSeatsPicker.heightAnchor.constraint(equalToConstant: 75),
+            signleOrFamilyLabel.topAnchor
+              .constraint(equalTo: userEmailLabel.bottomAnchor, constant: 15),
+            signleOrFamilyLabel.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor, constant: 20),
+            signleOrFamilyLabel.heightAnchor
+              .constraint(equalToConstant: 45),
             
             
-            datePicker.topAnchor.constraint(equalTo: numberOfSeatsPicker.bottomAnchor, constant: 15),
-            datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            restButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 25),
-            restButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            restButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            restButton.heightAnchor.constraint(equalToConstant: 45),
-         
+            signleOrFamilySwitch.topAnchor
+              .constraint(equalTo: userEmailLabel.bottomAnchor, constant: 15),
+            signleOrFamilySwitch.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor, constant: -20),
+            signleOrFamilySwitch.heightAnchor
+              .constraint(equalToConstant: 45),
+            
+            inOrOutsideLabel.topAnchor
+              .constraint(equalTo: signleOrFamilyLabel.bottomAnchor, constant: 15),
+            inOrOutsideLabel.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor, constant: 20),
+            inOrOutsideLabel.heightAnchor
+              .constraint(equalToConstant: 45),
+            
+            inOrOutsideSwitch.topAnchor
+              .constraint(equalTo: signleOrFamilyLabel.bottomAnchor, constant: 15),
+            inOrOutsideSwitch.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor, constant: -20),
+            inOrOutsideSwitch.heightAnchor
+              .constraint(equalToConstant: 45),
+            
+            numberOfSeatsPicker.topAnchor
+              .constraint(equalTo: inOrOutsideSwitch.bottomAnchor, constant: 35),
+            numberOfSeatsPicker.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor, constant: 20),
+            numberOfSeatsPicker.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor, constant: -20),
+            numberOfSeatsPicker.heightAnchor
+              .constraint(equalToConstant: 75),
+            
+            
+            datePicker.topAnchor
+              .constraint(equalTo: numberOfSeatsPicker.bottomAnchor, constant: 15),
+            datePicker.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor, constant: 20),
+            datePicker.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            restButton.topAnchor
+              .constraint(equalTo: datePicker.bottomAnchor, constant: 25),
+            restButton.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor, constant: -20),
+            restButton.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor, constant: 20),
+            restButton.heightAnchor
+              .constraint(equalToConstant: 45),
         ])
     }
   
@@ -277,11 +324,17 @@ class AddReservationVC: UIViewController {
         guard let user = Auth.auth().currentUser else {return}
         var location = ""
         if UserChoseIndoors.isEmpty || UserChoseWithFamily.isEmpty || UserChoseSeatsNumber.isEmpty || UserChoseDate.isEmpty {
-            let alert = UIAlertController(title: "Something went wrong!", message: "Please make sure you completed all reservation fields.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
+            let alert = UIAlertController(title: "Something went wrong!",
+                                          message: "Please make sure you completed all reservation fields.",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: .cancel,
+                                          handler: nil))
+            self.present(alert,
+                         animated: true)
         } else {
-            db.collection("RestaurantProfile").whereField("userID", isEqualTo: restaurantID ?? "NA")
+            db.collection("RestaurantProfile").whereField("userID",
+                                                          isEqualTo: restaurantID ?? "NA")
                 .addSnapshotListener { (querySnapshot, error) in
                     
                     if let e = error {
@@ -349,23 +402,29 @@ class AddReservationVC: UIViewController {
 
 //MARK: - UIPickerView
 
-extension AddReservationVC: UIPickerViewDelegate, UIPickerViewDataSource {
+extension AddReservationVC: UIPickerViewDelegate,
+                            UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
   
   
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
         return 10
     }
   
   
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
         return "\(row + 1) seats"
     }
   
   
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView,
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
         print("row \(row + 1)")
         UserChoseSeatsNumber = "\(row + 1)"
     }

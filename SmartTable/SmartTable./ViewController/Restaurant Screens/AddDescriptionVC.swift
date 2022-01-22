@@ -77,27 +77,39 @@ class AddDescriptionVC: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            limitLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            limitLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+            limitLabel.topAnchor
+              .constraint(equalTo: view.topAnchor, constant: 20),
+            limitLabel.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor,
                                                  constant: -20),
-            limitLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+            limitLabel.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor,
                                                 constant: 20),
-            limitLabel.heightAnchor.constraint(equalToConstant: 35),
+            limitLabel.heightAnchor
+              .constraint(equalToConstant: 35),
             
-            restTV.topAnchor.constraint(equalTo: limitLabel.bottomAnchor,
+            restTV.topAnchor
+              .constraint(equalTo: limitLabel.bottomAnchor,
                                         constant: 0),
-            restTV.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+            restTV.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor,
                                              constant: -20),
-            restTV.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+            restTV.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor,
                                             constant: 20),
-            restTV.heightAnchor.constraint(equalToConstant: 80),
-            restButton.topAnchor.constraint(equalTo: restTV.bottomAnchor,
+            restTV.heightAnchor
+              .constraint(equalToConstant: 80),
+            restButton.topAnchor
+              .constraint(equalTo: restTV.bottomAnchor,
                                             constant: 5),
-            restButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+            restButton.trailingAnchor
+              .constraint(equalTo: view.trailingAnchor,
                                                  constant: -20),
-            restButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+            restButton.leadingAnchor
+              .constraint(equalTo: view.leadingAnchor,
                                                 constant: 20),
-            restButton.heightAnchor.constraint(equalToConstant: 45),
+            restButton.heightAnchor
+              .constraint(equalToConstant: 45),
         ])
     }
   

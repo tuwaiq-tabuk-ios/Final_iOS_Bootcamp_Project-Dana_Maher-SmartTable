@@ -21,6 +21,7 @@ class restaurantWelcomeScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+      
       self.dismissKeyboard()
       navigationItem.backButtonTitle = "Back"
       

@@ -69,23 +69,35 @@ class UserProfile: UIViewController {
     
     view.addSubview(containerView)
     
-    containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    containerView.widthAnchor.constraint(equalToConstant: 325).isActive = true
-    containerView.heightAnchor.constraint(equalToConstant: 155).isActive = true
+    containerView.centerXAnchor
+      .constraint(equalTo: view.centerXAnchor).isActive = true
+    containerView.centerYAnchor
+      .constraint(equalTo: view.centerYAnchor).isActive = true
+    containerView.widthAnchor
+      .constraint(equalToConstant: 325).isActive = true
+    containerView.heightAnchor
+      .constraint(equalToConstant: 155).isActive = true
     
     userNameLabel.translatesAutoresizingMaskIntoConstraints = false
     containerView.addSubview(userNameLabel)
-    userNameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20).isActive = true
-    userNameLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+    userNameLabel.topAnchor
+      .constraint(equalTo: containerView.topAnchor, constant: 20).isActive = true
+    userNameLabel.centerXAnchor
+      .constraint(equalTo: containerView.centerXAnchor).isActive = true
     
     containerView.addSubview(signOutButton)
     
-    signOutButton.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 20).isActive = true
-    signOutButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
-    signOutButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
-    signOutButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-    signOutButton.addTarget(self, action: #selector(signOutButtonPressed), for: .touchUpInside)
+    signOutButton.topAnchor
+      .constraint(equalTo: userNameLabel.bottomAnchor, constant: 20).isActive = true
+    signOutButton.leadingAnchor
+      .constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
+    signOutButton.trailingAnchor
+      .constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
+    signOutButton.heightAnchor
+      .constraint(equalToConstant: 45).isActive = true
+    signOutButton.addTarget(self,
+                            action: #selector(signOutButtonPressed),
+                            for: .touchUpInside)
   }
   
   //MARK: - IBActionsProgrammatically
@@ -93,19 +105,25 @@ class UserProfile: UIViewController {
   @objc func signOutButtonPressed(_ sender: UIButton) {
     do {
       try Auth.auth().signOut()
-      if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeVC") as? UINavigationController {
+      if let vc = UIStoryboard(name: "Main",
+                               bundle: nil).instantiateViewController(withIdentifier: "WelcomeVC") as? UINavigationController {
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.present(vc, animated: true,
+                     completion: nil)
       }
     } catch{
-      print("ERROR in signout",error.localizedDescription)
+      print("ERROR in signout",
+            error.localizedDescription)
     }
   }
   
   
   @objc func addDescriptionButtonPressed() {
-    let sheetViewController = AddDescriptionVC(nibName: nil, bundle: nil)
-    self.present(sheetViewController, animated: true, completion: nil)
+    let sheetViewController = AddDescriptionVC(nibName: nil,
+                                               bundle: nil)
+    self.present(sheetViewController,
+                 animated: true,
+                 completion: nil)
   }
   
   //MARK: - Methode
