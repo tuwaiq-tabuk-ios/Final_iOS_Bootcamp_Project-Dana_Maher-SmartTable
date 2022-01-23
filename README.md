@@ -10,6 +10,12 @@ Users can also evaluate and share on the app their expreriences on the restauran
 
 
 ## User stories – Owners restaurant
-
+Registration as an owner and sign in
+Upload photos to showcase the restaurant
+Manage a reservation calendar with free tables
+Owners recieve notifications when there're new reservation
 
 ## User stories – Clients restaurant
+Registration as a client and sign in
+The user we can go to map aand see location of restaurant
+Make reservations as indiviual or family. If possible indicate indoor or outdoor and with or without barrier
