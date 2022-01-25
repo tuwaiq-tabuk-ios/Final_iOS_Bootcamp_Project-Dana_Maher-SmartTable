@@ -29,6 +29,15 @@ class CreateAccountForUserVC: UIViewController {
     
     self.dismissKeyboard()
     navigationItem.backButtonTitle = "Back"
+    
+    createAccountButton.addTarget(self,
+                                  action: #selector(createUser),
+                                  for: .touchUpInside)
+    
+    nameTF.delegate = self
+    emailTF.delegate = self
+    passwordTF.delegate = self
+    confirmPasswordTF.delegate = self
   }
   
   //MARK: - IBActions
@@ -52,11 +61,16 @@ class CreateAccountForUserVC: UIViewController {
                         password: password,
                         name: name, confirmPassword: confirmPassword)      } else {
         
-        let alert = UIAlertController(title: "Oops!", message: "The password is not available", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Oops!",
+                                      message: "The password is not available",
+                                      preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .cancel,
+                                      handler: nil))
         
-        present(alert, animated: true)
+        present(alert,
+                animated: true)
         
       }
     } else {
@@ -78,6 +92,7 @@ class CreateAccountForUserVC: UIViewController {
   private func signupUserUsing(email: String,
                                password: String,
                                name: String,confirmPassword: String) {
+    
     FSUserManager.shared.signUpUserWith(email: email,
                                         password: password,
                                         name: name, confirmPassword: confirmPassword) { error in

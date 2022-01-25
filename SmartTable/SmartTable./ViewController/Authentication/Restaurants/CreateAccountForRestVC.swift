@@ -30,7 +30,9 @@ class CreateAccountForRestVC: UIViewController {
     self.dismissKeyboard()
     navigationItem.backButtonTitle = "Back"
     
-    createAccountButton.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
+    createAccountButton.addTarget(self,
+                                  action: #selector(createAccountButtonPressed),
+                                  for: .touchUpInside)
     
     nameTF.delegate = self
     emailTF.delegate = self
@@ -55,56 +57,91 @@ class CreateAccountForRestVC: UIViewController {
     
     if !email.isEmpty && !password.isEmpty && !name.isEmpty {
       if passwordTF.text == confirmPasswordTF.text {
-        signupUserUsing(email: email, password: password, name: name)
+        signupUserUsing(email: email,
+                        password: password,
+                        name: name)
       } else {
         
-        let alert = UIAlertController(title: "Oops!", message: "The password is not available", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Oops!",
+                                      message: "The password is not available",
+                                      preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .cancel,
+                                      handler: nil))
         
-        present(alert, animated: true)
+        present(alert,
+                animated: true)
         
       }
       
     } else {
-      let alert = UIAlertController(title: "Oops!", message: "please make sure name, email and password are not empty.", preferredStyle: .alert)
+      let alert = UIAlertController(title: "Oops!",
+                                    message: "please make sure name, email and password are not empty.",
+                                    preferredStyle: .alert)
       
-      alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+      alert.addAction(UIAlertAction(title: "OK",
+                                    style: .cancel,
+                                    handler: nil))
       
-      present(alert, animated: true)
+      present(alert,
+              animated: true)
     }
   }
   
   //MARK: - Methode
   
-  @objc private func signupUserUsing(email: String, password: String, name: String) {
-    Auth.auth().createUser(withEmail: email, password: password) { results, error in
+  @objc private func signupUserUsing(email: String,
+                                     password: String,
+                                     name: String) {
+    Auth.auth().createUser(withEmail: email,
+                           password: password) { results, error in
       
       if let error = error as NSError? {
         switch AuthErrorCode(rawValue: error.code) {
         case .emailAlreadyInUse:
           
-          let alert = UIAlertController(title: "Oops!", message: "email Already in use", preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-          self.present(alert, animated: true)
+          let alert = UIAlertController(title: "Oops!",
+                                        message: "email Already in use",
+                                        preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK",
+                                        style: .cancel,
+                                        handler: nil))
+          self.present(alert,
+                       animated: true)
           
         case .invalidEmail:
           
-          let alert = UIAlertController(title: "Oops!", message: "are sure you typed the email correctly?", preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-          self.present(alert, animated: true)
+          let alert = UIAlertController(title: "Oops!",
+                                        message: "are sure you typed the email correctly?",
+                                        preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK",
+                                        style: .cancel,
+                                        handler: nil))
+          self.present(alert,
+                       animated: true)
           
         case .weakPassword:
           
-          let alert = UIAlertController(title: "Oops!", message: "Your password is weak, please make sure it's strong.", preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-          self.present(alert, animated: true)
+          let alert = UIAlertController(title: "Oops!",
+                                        message: "Your password is weak, please make sure it's strong.",
+                                        preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK",
+                                        style: .cancel,
+                                        handler: nil))
+          self.present(alert,
+                       animated: true)
           
         default:
           
-          let alert = UIAlertController(title: "Oops!", message: "\(error.localizedDescription)", preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-          self.present(alert, animated: true)
+          let alert = UIAlertController(title: "Oops!",
+                                        message: "\(error.localizedDescription)",
+                                        preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK",
+                                        style: .cancel,
+                                        handler: nil))
+          self.present(alert,
+                       animated: true)
           
         }
       } else {
