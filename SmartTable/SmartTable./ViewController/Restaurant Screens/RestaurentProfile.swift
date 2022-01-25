@@ -81,12 +81,12 @@ class RestaurentProfile: UIViewController {
     
     readImageFromFirestore()
     setUpLabels()
-    
   }
   
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    
     fetchCurrentUsers()
   }
   
@@ -98,51 +98,77 @@ class RestaurentProfile: UIViewController {
     
     view.addSubview(containerView)
     
-    containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    containerView.widthAnchor.constraint(equalToConstant: 325).isActive = true
-    containerView.heightAnchor.constraint(equalToConstant: 405).isActive = true
+    containerView.centerXAnchor
+      .constraint(equalTo: view.centerXAnchor).isActive = true
+    containerView.centerYAnchor
+      .constraint(equalTo: view.centerYAnchor).isActive = true
+    containerView.widthAnchor
+      .constraint(equalToConstant: 325).isActive = true
+    containerView.heightAnchor
+      .constraint(equalToConstant: 405).isActive = true
     
     profileImage.isUserInteractionEnabled = true
-    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imagePressed))
+    let tapRecognizer = UITapGestureRecognizer(target: self,
+                                               action: #selector(imagePressed))
     profileImage.addGestureRecognizer(tapRecognizer)
     
     containerView.addSubview(profileImage)
     
     profileImage.translatesAutoresizingMaskIntoConstraints = false
-    profileImage.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20).isActive = true
-    profileImage.widthAnchor.constraint(equalToConstant: 160).isActive = true
-    profileImage.heightAnchor.constraint(equalToConstant: 160).isActive = true
-    profileImage.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+    profileImage.topAnchor
+      .constraint(equalTo: containerView.topAnchor, constant: 20).isActive = true
+    profileImage.widthAnchor
+      .constraint(equalToConstant: 160).isActive = true
+    profileImage.heightAnchor
+      .constraint(equalToConstant: 160).isActive = true
+    profileImage.centerXAnchor
+      .constraint(equalTo: containerView.centerXAnchor).isActive = true
     
     userNameLabel.translatesAutoresizingMaskIntoConstraints = false
     containerView.addSubview(userNameLabel)
-    userNameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20).isActive = true
-    userNameLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+    userNameLabel.topAnchor
+      .constraint(equalTo: profileImage.bottomAnchor, constant: 20).isActive = true
+    userNameLabel.centerXAnchor
+      .constraint(equalTo: containerView.centerXAnchor).isActive = true
     
     containerView.addSubview(signOutButton)
     
     userDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
     containerView.addSubview(userDescriptionLabel)
-    userDescriptionLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 3).isActive = true
-    userDescriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
-    userDescriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
+    userDescriptionLabel.topAnchor
+      .constraint(equalTo: userNameLabel.bottomAnchor, constant: 3).isActive = true
+    userDescriptionLabel.trailingAnchor
+      .constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
+    userDescriptionLabel.leadingAnchor
+      .constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
     
     containerView.addSubview(signOutButton)
     
-    signOutButton.topAnchor.constraint(equalTo: userDescriptionLabel.bottomAnchor, constant: 20).isActive = true
-    signOutButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
-    signOutButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
-    signOutButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-    signOutButton.addTarget(self, action: #selector(signOutButtonPressed), for: .touchUpInside)
+    signOutButton.topAnchor
+      .constraint(equalTo: userDescriptionLabel.bottomAnchor, constant: 20).isActive = true
+    signOutButton.leadingAnchor
+      .constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
+    signOutButton.trailingAnchor
+      .constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
+    signOutButton.heightAnchor
+      .constraint(equalToConstant: 45).isActive = true
+    signOutButton.addTarget(self,
+                            action: #selector(signOutButtonPressed),
+                            for: .touchUpInside)
     
     containerView.addSubview(addDescriptionButton)
-    addDescriptionButton.topAnchor.constraint(equalTo: signOutButton.bottomAnchor, constant: 5).isActive = true
-    addDescriptionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
-    addDescriptionButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-    addDescriptionButton.widthAnchor.constraint(equalToConstant: 145).isActive = true
+    addDescriptionButton.topAnchor
+      .constraint(equalTo: signOutButton.bottomAnchor, constant: 5).isActive = true
+    addDescriptionButton.trailingAnchor
+      .constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
+    addDescriptionButton.heightAnchor
+      .constraint(equalToConstant: 25).isActive = true
+    addDescriptionButton.widthAnchor
+      .constraint(equalToConstant: 145).isActive = true
     
-    addDescriptionButton.addTarget(self, action: #selector(addDescriptionButtonPressed), for: .touchUpInside)
+    addDescriptionButton.addTarget(self,
+                                   action: #selector(addDescriptionButtonPressed),
+                                   for: .touchUpInside)
   }
   
   
@@ -160,8 +186,10 @@ class RestaurentProfile: UIViewController {
   
   
   @objc func addDescriptionButtonPressed() {
-    let sheetViewController = AddDescriptionVC(nibName: nil, bundle: nil)
-    self.present(sheetViewController, animated: true, completion: nil)
+    let sheetViewController = AddDescriptionVC(nibName: nil,
+                                               bundle: nil)
+    self.present(sheetViewController, animated: true,
+                 completion: nil)
   }
   
   //MARK: - Functions
@@ -181,7 +209,8 @@ class RestaurentProfile: UIViewController {
   }
   
   
-  func saveImageToFirestore(url: String, userId: String) {
+  func saveImageToFirestore(url: String,
+                            userId: String) {
     
     db.collection("RestaurantProfile").document(userId).setData([
       "userImageURL": url,
@@ -246,7 +275,8 @@ class RestaurentProfile: UIViewController {
   
   private func fetchCurrentUsers() {
     guard let currentUser = FirebaseAuth.Auth.auth().currentUser else {return}
-    db.collection("RestaurantProfile").whereField("userID", isEqualTo: currentUser.uid)
+    db.collection("RestaurantProfile").whereField("userID",
+                                                  isEqualTo: currentUser.uid)
       .addSnapshotListener { (querySnapshot, error) in
         if let e = error {
           print("There was an issue retrieving data from Firestore. \(e)")
@@ -273,9 +303,11 @@ class RestaurentProfile: UIViewController {
 
 //MARK: - UIImagePickerController, UINavigationController
 
-extension RestaurentProfile: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension RestaurentProfile: UIImagePickerControllerDelegate,
+                             UINavigationControllerDelegate{
   
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     
     guard let userPickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {return}
     guard let d: Data = userPickedImage.jpegData(compressionQuality: 0.5) else { return }

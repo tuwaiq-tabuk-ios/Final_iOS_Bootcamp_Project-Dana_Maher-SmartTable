@@ -31,7 +31,9 @@ class HomeVC: UIViewController {
   let profileButton: UIButton = {
     let button = UIButton(type: .system)
     button.circularButton()
-    button.addTarget(self, action: #selector(goToRestProfile), for: .touchUpInside)
+    button.addTarget(self,
+                     action: #selector(goToRestProfile),
+                     for: .touchUpInside)
     button.isHidden = true
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
@@ -40,7 +42,9 @@ class HomeVC: UIViewController {
   let profileButtonForUser: UIButton = {
     let button = UIButton(type: .system)
     button.circularButton()
-    button.addTarget(self, action: #selector(goToUserProfile), for: .touchUpInside)
+    button.addTarget(self,
+                     action: #selector(goToUserProfile),
+                     for: .touchUpInside)
     button.isHidden = true
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
@@ -77,7 +81,6 @@ class HomeVC: UIViewController {
             self.profileButton.isHidden = false
             self.isRest = true
             self.profileButtonForUser.isHidden = true
-            
             
           }
           self.setupLocation()
@@ -124,20 +127,24 @@ class HomeVC: UIViewController {
     let vc = UINavigationController(rootViewController: WelcomeVC())
     vc.modalTransitionStyle = .flipHorizontal
     vc.modalPresentationStyle = .fullScreen
-    self.present(vc, animated: true, completion: nil)
+    self.present(vc,
+                 animated: true,
+                 completion: nil)
   }
   
   // go to restaurantprofile
   
   @objc private func goToRestProfile() {
-    self.navigationController?.pushViewController(RestaurentProfile(), animated: true)
+    self.navigationController?.pushViewController(RestaurentProfile(),
+                                                  animated: true)
     
   }
   
   // go to usreProfile
   
   @objc private func goToUserProfile() {
-    self.navigationController?.pushViewController(UserProfile(), animated: true)
+    self.navigationController?.pushViewController(UserProfile(),
+                                                  animated: true)
     
   }
   
@@ -149,7 +156,8 @@ class HomeVC: UIViewController {
     guard let user = Auth.auth().currentUser else {
       return
     }
-    db.collection("RestaurantProfile").whereField("userID", isEqualTo: user.uid)
+    db.collection("RestaurantProfile").whereField("userID",
+                                                  isEqualTo: user.uid)
       .addSnapshotListener { (querySnapshot, error) in
         
         if let e = error {
@@ -171,7 +179,8 @@ class HomeVC: UIViewController {
   //MARK: - Functions
   
   func uiSettengs() {
-    tableView.register(RestCell.self, forCellReuseIdentifier: RestCell.id)
+    tableView.register(RestCell.self,
+                       forCellReuseIdentifier: RestCell.id)
     
     searchBar.loadViewIfNeeded()
     searchBar.searchResultsUpdater = self
@@ -186,20 +195,26 @@ class HomeVC: UIViewController {
     navigationItem.hidesSearchBarWhenScrolling = true
     searchBar.searchBar.delegate = self
     
-    
     view.addSubview(profileButton)
     view.addSubview(profileButtonForUser)
     
+    profileButton.bottomAnchor
+      .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+    profileButton.trailingAnchor
+      .constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+    profileButton.widthAnchor
+      .constraint(equalToConstant: 45).isActive = true
+    profileButton.heightAnchor
+      .constraint(equalToConstant: 45).isActive = true
     
-    profileButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
-    profileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-    profileButton.widthAnchor.constraint(equalToConstant: 45).isActive = true
-    profileButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-    
-    profileButtonForUser.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
-    profileButtonForUser.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-    profileButtonForUser.widthAnchor.constraint(equalToConstant: 45).isActive = true
-    profileButtonForUser.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    profileButtonForUser.bottomAnchor
+      .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+    profileButtonForUser.trailingAnchor
+      .constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+    profileButtonForUser.widthAnchor
+      .constraint(equalToConstant: 45).isActive = true
+    profileButtonForUser.heightAnchor
+      .constraint(equalToConstant: 45).isActive = true
   }
   
   
@@ -213,7 +228,10 @@ class HomeVC: UIViewController {
           self.restaurants = []
           for document in querySnapshot!.documents{
             let data = document.data()
-            self.restaurants.append(Restaurent(restName: data["name"] as? String ?? "NA", restDescription: data["restaurantDescription"] as? String ?? "NA", restImageURL: data["userImageURL"] as? String ?? "NA", id: data["userID"] as? String ?? "NA"))
+            self.restaurants.append(Restaurent(restName: data["name"] as? String ?? "NA",
+                                               restDescription: data["restaurantDescription"] as? String ?? "NA",
+                                               restImageURL: data["userImageURL"] as? String ?? "NA",
+                                               id: data["userID"] as? String ?? "NA"))
           }
           DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -226,7 +244,8 @@ class HomeVC: UIViewController {
   
   //MARK: - Get Image
   
-  private func readImageFromFirestore(with url: String, completion: @escaping (UIImage) -> ()) {
+  private func readImageFromFirestore(with url: String,
+                                      completion: @escaping (UIImage) -> ()) {
     
     
     if  url != "NA"
@@ -252,8 +271,10 @@ class HomeVC: UIViewController {
 
 //MARK: - UITableView
 
-extension HomeVC: UITableViewDelegate, UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension HomeVC: UITableViewDelegate,
+                  UITableViewDataSource {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
     if searchBar.isActive && !searchBar.searchBar.text!.isEmpty {
       return filteredResults.count
     } else {
@@ -262,8 +283,10 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: RestCell.id, for: indexPath) as! RestCell
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: RestCell.id,
+                                             for: indexPath) as! RestCell
     
     
     
@@ -288,18 +311,26 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView,
+                 heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
   }
   
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: true)
+  func tableView(_ tableView: UITableView,
+                 didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath,
+                          animated: true)
     
     if isRest {
-      let alert = UIAlertController(title: "Sorry", message: "Please, Log in as a customer to reserve a table.", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-      self.present(alert, animated: true)
+      let alert = UIAlertController(title: "Sorry",
+                                    message: "Please, Log in as a customer to reserve a table.",
+                                    preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "OK",
+                                    style: .cancel,
+                                    handler: nil))
+      self.present(alert,
+                   animated: true)
       
     } else {
       
@@ -308,14 +339,16 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
       vc.restDescription = self.restaurants[indexPath.row].restDescription
       vc.restTitle = self.restaurants[indexPath.row].restName
       vc.restaurantID = self.restaurants[indexPath.row].id
-      self.navigationController?.pushViewController(vc, animated: true)
+      self.navigationController?.pushViewController(vc,
+                                                    animated: true)
     }
   }
 }
 
 //MARK: - UISearch
 
-extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension HomeVC: UISearchResultsUpdating,
+                  UISearchBarDelegate {
   func updateSearchResults(for searchController: UISearchController) {
     if !searchController.isActive {
       return
@@ -345,27 +378,30 @@ extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
 //MARK: - CLLocationManager
 
 extension HomeVC: CLLocationManagerDelegate {
-  
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    guard let location = locations.last else {return}
-    
-    print("this is the location \(location.coordinate.latitude), long \(location.coordinate.longitude)")
-    saveLocationMessage(location: location)
-    locationManager.stopUpdatingLocation()
-  }
-  
-  
-  private func saveLocationMessage(location: CLLocation) {
-    guard let userId = Auth.auth().currentUser?.uid else {return}
-    
-    db.collection("RestaurantProfile").document(userId).setData([
-      "restaurantLocation": "\(location.coordinate.latitude),\(location.coordinate.longitude)"
-    ], merge: true) { err in
-      if let err = err {
-        print("Error writing document: \(err)")
-      } else {
-        print("Document successfully written!")
-      }
+    func locationManager(_ manager: CLLocationManager,
+                         didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else {return}
+        
+        print("this is the location \(location.coordinate.latitude), long \(location.coordinate.longitude)")
+        saveLocationMessage(location: location)
+        locationManager.stopUpdatingLocation()
     }
-  }
+    
+    
+    
+    private func saveLocationMessage(location: CLLocation) {
+       guard let userId = Auth.auth().currentUser?.uid else {return}
+        
+        db.collection("RestaurantProfile").document(userId).setData([
+            "restaurantLocation": "\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        ], merge: true) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+    }
+    
 }

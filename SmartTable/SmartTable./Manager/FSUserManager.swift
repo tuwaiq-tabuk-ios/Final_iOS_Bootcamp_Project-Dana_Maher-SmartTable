@@ -14,6 +14,7 @@ class FSUserManager {
 
   static let shared = FSUserManager()
   
+  
   private init() {}
   
   //MARK: - Register
@@ -26,6 +27,7 @@ class FSUserManager {
     completion: @escaping (_ error: Error?) -> Void
   ) {
    
+    
     Auth.auth().createUser(withEmail: email,
                            password: password) { authDataResult, error in
       completion(error)

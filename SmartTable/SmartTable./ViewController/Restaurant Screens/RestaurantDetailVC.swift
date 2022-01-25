@@ -68,13 +68,18 @@ class RestaurantDetailVC: UIViewController {
         readImageFromFirestore(with: restImageURL ?? "NA") { image in
             DispatchQueue.main.async {
                 self.restImageView.image = image
+              
+
             }
         }
+      view.backgroundColor = UIColor(named: "Secondary Brand Fill Color")
     }
   
   
     override func viewDidAppear(_ animated: Bool) {
-       scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+20)
+       scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width,
+                                       height: UIScreen.main.bounds.height+20)
+      
     }
     
   //MARK: - Methode
@@ -84,7 +89,6 @@ class RestaurantDetailVC: UIViewController {
         restTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         restBodyLabel.translatesAutoresizingMaskIntoConstraints = false
         reserveTableButton.translatesAutoresizingMaskIntoConstraints = false
-
       
         contentView.addSubview(restImageView)
         scrollView.addSubview(reserveTableButton)
@@ -98,38 +102,55 @@ class RestaurantDetailVC: UIViewController {
         NSLayoutConstraint.activate([
             
           
-            restImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 5),
-            restImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            restImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            restImageView.heightAnchor.constraint(equalToConstant: view.frame.size.height / 3.65),
+            restImageView.topAnchor
+              .constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 5),
+            restImageView.leadingAnchor
+              .constraint(equalTo: contentView.leadingAnchor),
+            restImageView.trailingAnchor
+              .constraint(equalTo: contentView.trailingAnchor),
+            restImageView.heightAnchor
+              .constraint(equalToConstant: view.frame.size.height / 3.65),
 
-            reserveTableButton.topAnchor.constraint(equalTo: restImageView.bottomAnchor, constant: 28),
-            reserveTableButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            reserveTableButton.heightAnchor.constraint(equalToConstant: 35),
-            reserveTableButton.widthAnchor.constraint(equalToConstant: 135),
+            reserveTableButton.topAnchor
+              .constraint(equalTo: restImageView.bottomAnchor, constant: 28),
+            reserveTableButton.leadingAnchor
+              .constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            reserveTableButton.heightAnchor
+              .constraint(equalToConstant: 35),
+            reserveTableButton.widthAnchor
+              .constraint(equalToConstant: 135),
 
-            restTitleLabel.topAnchor.constraint(equalTo: reserveTableButton.bottomAnchor, constant: 15),
-            restTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            restTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            restTitleLabel.topAnchor
+              .constraint(equalTo: reserveTableButton.bottomAnchor, constant: 15),
+            restTitleLabel.leadingAnchor
+              .constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            restTitleLabel.trailingAnchor
+              .constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
-            restBodyLabel.topAnchor.constraint(equalTo: restTitleLabel.bottomAnchor, constant: 13),
-            restBodyLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            restBodyLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+            restBodyLabel.topAnchor
+              .constraint(equalTo: restTitleLabel.bottomAnchor, constant: 13),
+            restBodyLabel.leftAnchor
+              .constraint(equalTo: contentView.leftAnchor, constant: 20),
+            restBodyLabel.rightAnchor
+              .constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
     }
   
   
     @objc func reserveTableButtonPressed() {
         print("Pressed")
-        let sheetViewController = AddReservationVC(nibName: nil, bundle: nil)
+        let sheetViewController = AddReservationVC(nibName: nil,
+                                                   bundle: nil)
         sheetViewController.restaurantID = restaurantID ?? "NA"
         sheetViewController.restaurantName = restTitle
-        self.present(sheetViewController, animated: true, completion: nil)
+        self.present(sheetViewController, animated: true,
+                     completion: nil)
     }
   
   //MARK: - Methode
 
-    private func readImageFromFirestore(with url: String, completion: @escaping (UIImage) -> ()) {
+    private func readImageFromFirestore(with url: String,
+                                        completion: @escaping (UIImage) -> ()) {
         if  url != "NA"
         {
             let httpsReference = self.storage.reference(forURL: url)
@@ -157,14 +178,22 @@ class RestaurantDetailVC: UIViewController {
            view.addSubview(scrollView)
            scrollView.addSubview(contentView)
            
-           scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-           scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-           scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-           scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+           scrollView.centerXAnchor
+        .constraint(equalTo: view.centerXAnchor).isActive = true
+           scrollView.widthAnchor
+        .constraint(equalTo: view.widthAnchor).isActive = true
+           scrollView.topAnchor
+        .constraint(equalTo: view.topAnchor).isActive = true
+           scrollView.bottomAnchor
+        .constraint(equalTo: view.bottomAnchor).isActive = true
            
-           contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-           contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-           contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-           contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+           contentView.centerXAnchor
+        .constraint(equalTo: scrollView.centerXAnchor).isActive = true
+           contentView.widthAnchor
+        .constraint(equalTo: scrollView.widthAnchor).isActive = true
+           contentView.topAnchor
+        .constraint(equalTo: scrollView.topAnchor).isActive = true
+           contentView.bottomAnchor
+        .constraint(equalTo: scrollView.bottomAnchor).isActive = true
        }
 }
